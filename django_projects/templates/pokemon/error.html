@@ -6,7 +6,12 @@
       <h2 class = "text-center">Search for your Favorite Pokemon</h2>
       <br>
       <form method="GET">
-        <input type = "text" name = "name" placeholder="Search..." class = "text-center">
+        <input type = "text" name = "name" placeholder="Search..." class = "text-center" list="poke_tag">
+        <datalist id="poke_tag" >
+            {% for poke in poke_list %}
+            <option value="{{poke}}"></option>
+            {% endfor %}
+        </datalist>
         <button type = "submit" class = "btn-danger btn-sm">SEARCH Pokemon</button>
       </form>
     </div>
