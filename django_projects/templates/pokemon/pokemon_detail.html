@@ -1,0 +1,79 @@
+{% extends 'pokemon/base.html'%}
+{% load static %}
+{% block content %}
+<head><script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script></head>
+<body>
+<div class = "container">
+    <br><br>
+    <div class="row">
+        <div class="col-md-5">
+          <br>
+          <img class="img-fluid" src="{{ pokemon.image_url }}" alt="" style = "width: 90%;">
+          <br><br>
+          <h3 class="card-title text-center ">{{ pokemon.pname }}</h3>
+        </div>
+        <div class="col-md-7 shadow-lg p-3 mb-5 bg-white rounded">
+          <h1 class="my-3">Pokemon Description</h1>
+          <p class = "lead">{{ pokemon.description }}</p>
+          <div class="row">
+              <div class="col-auto">
+                <h2 class="my-3 text-center">Pokemon Type</h2>
+                <ul class='list-unstyled'>{% for i in poke_types %}
+                    <li class="lead text-decoration-none form-group"><a href='/pokemon/{{i.lower}}' target="_blank">
+                        <button type="button" class="btn btn-outline-dark">{{i.title}}</button> </a></li>
+                    {% endfor %}
+                </ul>
+               </div>
+              <div class='col-auto'>
+              <h2 class='my-3 text-center'>Pokemon Locations</h2>
+              {% if poke_locations %}
+              <table class="table table-responsive" style="height: 15em; overflow-y:hidden; display:block;" id='loc_table'>
+                  <tr>
+                      <th>Location</th>
+                      <th>Game Version</th>
+                  </tr>
+                  <tr>{% for key,value in poke_locations.items %}
+                    <td>{{key.title}}</td>
+                    <td>{{value.title}}</td>
+                  </tr>
+                {% endfor %}
+                    <div>
+           {% if poke_locations.items|length > 5 %}
+                <button type="button" class="btn btn-info" id="expand">Click for More</button>
+            {% endif %}
+            </div>
+              </table>
+              {% else %}
+              <div class="font-weight-bolder">Pokemon does not exist in the wild!</div>
+              {% endif %}
+          </div>
+          </div>
+
+        </div>
+    </div>
+    <a href="/pokemon" class="text-decoration-none">
+        <input
+        type="submit"
+        value="Return to Pokedex"
+        class="btn btn-danger btn-block mb-3"
+        type="button"
+    /></a>
+</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+  var move = "expand";
+      $('#expand').on('click', function() {
+          if (move=='expand') {
+          $('#loc_table').css('height', '100%')
+          move='shrink'
+      }
+          else {
+              $('#loc_table').css('height', '15em')
+              move='expand'
+          }
+        })
+     });
+</script>
+</body>
+{% endblock %}
