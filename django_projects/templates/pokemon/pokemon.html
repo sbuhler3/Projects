@@ -1,6 +1,7 @@
 {% extends 'pokemon/base.html'%}
 {% load static %}
 {% block content %}
+<head>
 <style>
  .row.top{
   background-color:crimson;
@@ -110,6 +111,12 @@
 #light_3 {
   background-color:green;
 }
+#learn {
+    background-color:white;
+    border-radius: .25em;
+    height:2.25em;
+    box-shadow:0 0 0 .3em white;
+}
 #big_box {
   background-color:white;
   border-radius:1em 5em;
@@ -151,9 +158,9 @@
   margin-top:3em;
 
 }
-</style>
+</style></head>
 
-    <div class = "container">
+    <div class = "container mb-3">
       <br>
       <h2 class = "text-center">Search for your Favorite Pokemon</h2>
       <br>
@@ -167,6 +174,13 @@
     <div class="d-inline-flex" id="big_circle">
         <div class="big_dot"></div>
     </div>
+    <div class="inline-flex my-auto" id="learn"><a href="pokemon/{{pokemon.id}}"
+              ><input
+                type="submit"
+                value="Learn More"
+                class="btn btn-outline-dark"
+                type="button"
+            /></a></div>
       <div class="mt-4 mr-2 d-inline-flex">
     		<div class="light m-2" id="light_1">
     		    <div class="dot" id="dot_1"></div>
@@ -211,13 +225,6 @@
     	</div>
   	</div>
   </div>
-  <br><br>
-<a href="pokemon/{{pokemon.id}}"
-              ><input
-                type="submit"
-                value="Learn More"
-                class="btn btn-danger btn-lg mb-3 ml-3"
-                type="button"
-            /></a>
+
       {% endfor %}
 {% endblock %}
