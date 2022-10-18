@@ -19,7 +19,7 @@
               <div class="col-auto">
                 <h2 class="my-3 text-center">Pokemon Type</h2>
                 <ul class='list-unstyled'>{% for i in poke_types %}
-                    <li class="lead text-decoration-none form-group"><a href='/pokemon/{{i.lower}}' target="_blank">
+                    <li class="lead text-decoration-none form-group"><a href="{% url 'pokemon:type_chart' i.lower %}" target="_blank">
                         <button type="button" class="btn btn-outline-dark">{{i.title}}</button> </a></li>
                     {% endfor %}
                 </ul>
@@ -51,7 +51,7 @@
 
         </div>
     </div>
-    <a href="/pokemon" class="text-decoration-none">
+    <a href="{% url 'pokemon:get_pokemon' %}" class="text-decoration-none">
         <input
         type="submit"
         value="Return to Pokedex"

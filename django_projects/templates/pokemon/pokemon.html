@@ -191,8 +191,8 @@
     <div class="d-inline-flex" id="big_circle">
         <div class="big_dot"></div>
     </div>
-    <div class="inline-flex my-auto" id="learn"><a href="pokemon/{{pokemon.id}}"
-              ><input
+    <div class="inline-flex my-auto" id="learn">
+        <a href="{% url 'pokemon:pokemon_detail' pokemon.id %}"><input
                 type="submit"
                 value="Learn More"
                 class="btn btn-outline-dark"

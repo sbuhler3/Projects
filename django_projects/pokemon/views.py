@@ -105,4 +105,4 @@ def type_chart(request,element):
         effect=get_object_or_404(Type, ptype=name)
         return render (request, 'pokemon/effect_chart.html', {"effect": effect})
     except:
-        return redirect (reverse('get_pokemon'))
+        return redirect (reverse('pokemon:get_pokemon'))

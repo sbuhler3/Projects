@@ -63,7 +63,7 @@
             </table>
             <br><br>
             <div class="btn-group btn-group-lg" role="group">
-                <a href="/pokemon" class="text-decoration-none">
+                <a href="{% url 'pokemon:get_pokemon' %}" class="text-decoration-none">
                     <button type="button" class="btn-danger btn-lg ml-2 mb-3">Return to Pokedex</button>
                 </a>
                 <a href="{{ request.META.HTTP_REFERER }}">
