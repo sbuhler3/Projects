@@ -6,7 +6,7 @@
   height: 100vh;
   margin:0;
 }
-
+/* Info section css */
 .info-row {
   display: flex;
   justify-content: center;
@@ -15,11 +15,20 @@
   padding-top: 20px;
   padding-left: 0;
   margin: auto;
+  margin-bottom: 0;
+  margin-top: 0;
+  width: 60%;
+  background-color: blue;
 }
 .pic {
   width:320px;
   border-radius: 10px 10px 0px 0px;
+  max-inline-size: 100%;
+  block-size: auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
 .name {
   margin:0;
   padding: 5px 5px;
@@ -55,7 +64,7 @@ color: #41cee7;
   gap: 8px; 
 }
 .email-but, .email-but:hover {
-width: 115px;
+width: 100px;
 height: 34px;
 background: #FFFFFF;
 border: 1px solid #D1D5DB;
@@ -67,7 +76,7 @@ cursor: pointer;
 }
 
 .linked-but {
-  width: 115px;
+  width: 100px;
 height: 34px;
 background: #5093E2;
 border: 1px solid #5093E2;
@@ -80,4 +89,28 @@ cursor: pointer;
 }
 button .but-text {
   padding-left: 5px;
+}
+
+.about-row {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  width: 60%;
+  background-color: blue;
+}
+.about {
+  font-family: 'Inter';
+  font-size: 16px;
+  margin: 0;
+  color: #F5F5F5;
+}
+.about-txt {
+  font-family: 'Inter';
+font-size: 10px;
+line-height: 150%;
+text-align: center;
+color: #DCDCDC;
+width: 50%;
+padding-top: 5px;
 }
