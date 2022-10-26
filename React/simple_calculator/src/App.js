@@ -32,13 +32,11 @@ function App() {
   function resetInput(e) { 
     e.preventDefault();
     inputRef.current.value="";
-    setResult(inputRef.current);
     
   }; 
  
   function resetResult(e) { 
     resultRef.current.value="";
-    setResult(resultRef.current);
   }; 
  
   return ( 
@@ -66,5 +64,4 @@ function App() {
     </div> 
   ); 
 } 
- 
-export default App; 
+export default App;
