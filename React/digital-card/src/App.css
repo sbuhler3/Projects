@@ -14,7 +14,6 @@
   flex-direction: column;
   padding-top: 20px;
   padding-left: 0;
- background-color:black;
   margin: auto;
 }
 .pic {
@@ -47,7 +46,7 @@ color: #41cee7;
   color: #F5F5F5;
   text-decoration: none;
 }
-.button-group {
+.button-group{
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -55,7 +54,7 @@ color: #41cee7;
   padding: 9px 13px 9px 11px;
   gap: 8px; 
 }
-.email-but {
+.email-but, .email-but:hover {
 width: 115px;
 height: 34px;
 background: #FFFFFF;
@@ -64,6 +63,7 @@ box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
 border-radius: 6px;
 font-family: 'Inter';
 font-size: 14px;
+cursor: pointer;
 }
 
 .linked-but {
@@ -76,6 +76,7 @@ border-radius: 6px;
 font-family: 'Inter';
 font-size: 14px;
 color: white;
+cursor: pointer;
 }
 button .but-text {
   padding-left: 5px;
