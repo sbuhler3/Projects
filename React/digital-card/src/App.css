@@ -2,9 +2,21 @@
   box-sizing: border-box;
 }
 .App {
-  background-color: gray;
   height: 100vh;
   margin:0;
+}
+.container {
+  width: 50%;
+  background-color: black;
+  margin: auto;
+  margin-top: 20px;
+  padding: 15px;
+  box-shadow: 10px 10px 10px gray;
+}
+@media screen and (max-width:550px) {
+  .container {
+    width:75%;
+}
 }
 /* Info section css */
 .info-row {
@@ -17,12 +29,12 @@
   margin: auto;
   margin-bottom: 0;
   margin-top: 0;
-  width: 60%;
-  background-color: blue;
+  width: 90%;
+  border-radius: 10px 10px 0px 0px;
+  background-color: rgb(33, 33, 34);
 }
 .pic {
   width:320px;
-  border-radius: 10px 10px 0px 0px;
   max-inline-size: 100%;
   block-size: auto;
   padding-left: 10px;
@@ -91,21 +103,23 @@ button .but-text {
   padding-left: 5px;
 }
 
-.about-row {
+/*interst and about section*/
+
+.about-row, .interest-row {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: auto;
-  width: 60%;
-  background-color: blue;
+  width: 90%;
+  background-color: rgb(33, 33, 34);
 }
-.about {
+.about, .interest {
   font-family: 'Inter';
   font-size: 16px;
   margin: 0;
   color: #F5F5F5;
 }
-.about-txt {
+.about-txt, .interest-txt {
   font-family: 'Inter';
 font-size: 10px;
 line-height: 150%;
@@ -113,4 +127,24 @@ text-align: center;
 color: #DCDCDC;
 width: 50%;
 padding-top: 5px;
+}
+
+/*footer*/
+.icon-cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(33, 33, 34);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  width: 90%;
+  margin: auto;
+  border-radius: 0 0 10px 10px;
+}
+.facebook {
+  padding-right: 20px;
+}
+.github {
+  padding-left:20px;
 }
