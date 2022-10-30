@@ -8,11 +8,43 @@
   letter-spacing: -0.075em;
   box-shadow: 0 3px 15px gray;
   color: #FFFFFF;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .globe {
   padding: 10px;
 }
+@media screen and (max-width:720px) {
+  .card-container{
+    flex-direction: column;
+  }
+  div .card-text {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  div .country {
+    padding-top: 10px;
+  }
+}
 .card-container {
   padding-left: 40px;
+  padding-bottom: 20px;
+  display: flex;
+}
+.image{
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  padding-top: 40px;
+}
+.card-text {
+  padding-left: 20px;
+  margin-left: 15px;
+}
+.country {
+  padding-top: 60px;
+  font-family: 'Inter';
+  font-size: 10px;
+  letter-spacing: 0.17em;
+  color: #2B283A;
+
 }
