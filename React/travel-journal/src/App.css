@@ -3,7 +3,7 @@
   padding: 15px;
   text-align: center;
   font-family: 'Inter';
-  font-size: 15px;
+  font-size: 20px;
   line-height: 18px;
   letter-spacing: -0.075em;
   box-shadow: 0 3px 15px gray;
@@ -43,8 +43,38 @@
 .country {
   padding-top: 60px;
   font-family: 'Inter';
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.17em;
   color: #2B283A;
+}
+.country img {
+  padding-right: 5px;
+}
+.googlelink {
+  padding-left: 10px;
+font-size: 12px;
+line-height: 12px;
+color: #918E9B;
+}
+h2 {
+  font-family: 'Inter';
+font-size: 25px;
+line-height: 30px;
+color: #2B283A;
+}
 
+.dates {
+font-family: 'Inter';
+font-weight: 700;
+font-size: 12px;
+line-height: 12px;
+padding-bottom: 10px;
+color: #2B283A;
+}
+.description {
+  font-family: 'Inter';
+font-size: 15px;
+line-height: 150%;
+margin-right: 50px;
+color: #2B283A;
 }
