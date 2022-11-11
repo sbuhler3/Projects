@@ -4,6 +4,17 @@ import Die from "./components/Die"
 
 function App() {
   const [dice, setDice]=React.useState(allNewDice())
+  const [tenzies, setTenzies] = React.useState(false)
+    //winning condition
+    React.useEffect(() => {
+        const allHeld = dice.every(die => die.isHeld)
+        const firstValue = dice[0].value
+        const allSameValue = dice.every(die => die.value === firstValue)
+        if (allHeld && allSameValue) {
+            setTenzies(true)
+            console.log("You won!")
+        }
+    }, [dice])
 
   //random number generated for dice
   function allNewDice() {
@@ -32,14 +43,20 @@ const DiceElement=dice.map(die => <Die
   holdDice={() => holdDice(die.id)}/>)
 
 function rollDice(){
-  setDice(oldDice => oldDice.map(die => {
-    return die.isHeld ? 
-    die : 
-    {
-      value: Math.ceil(Math.random() * 6),
-      isHeld: false,
-    id: Math.ceil(Math.random() *1000000) }
-  }))
+  if (!tenzies) {
+    setDice(oldDice => oldDice.map(die => {
+      return die.isHeld ? 
+      die : 
+      {
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+      id: Math.ceil(Math.random() *1000000) }
+    }))
+  } else {
+    setTenzies(false)
+    setDice(allNewDice())
+  }
+  
 }
   return (
       <main>
@@ -52,7 +69,8 @@ function rollDice(){
         <button
         onClick={rollDice}
         className="diceRoll">
-          <div className='rollText'>Roll</div></button>
+          <div className='rollText'>
+            {tenzies ? "Play again?":"Roll"}</div></button>
       </main>
   );
 }
