@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react"
 import Die from "./components/Die"
+import Confetti from "react-confetti"
 
 function App() {
   const [dice, setDice]=React.useState(allNewDice())
@@ -12,7 +13,6 @@ function App() {
         const allSameValue = dice.every(die => die.value === firstValue)
         if (allHeld && allSameValue) {
             setTenzies(true)
-            console.log("You won!")
         }
     }, [dice])
 
@@ -60,6 +60,7 @@ function rollDice(){
 }
   return (
       <main>
+        {tenzies && <Confetti/>}
          <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same.
              Click each die to freeze it at its current value between rolls.</p>
