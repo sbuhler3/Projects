@@ -1,19 +1,34 @@
 import './App.css';
-import React from "react"
+import {useState, useEffect} from "react"
 import blob from './images/blob-5.png'
 import Start from './components/Start'
-import Game from './components/Game'
+import Question from './components/Question'
 function App() {
-  const [gameOn, setGameOn]=React.useState(false)
+  const [gameOn, setGameOn]=useState(false)
+  const [questions, setQuestions]=useState([])
   function beginGame(){
     setGameOn(true)
   }
+
+  //call API
+useEffect(() => {
+  fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+    .then(res => res.json())
+    .then(data => setQuestions(data.results))
+},[])
+
+const allQuestions= questions.map(results => {
+  return(<Question
+  result={results}
+  question={results.question}
+  correct_answer={results.correct_answer}
+  incorrect_answers={results.incorrect_answers}
+  />)
+})
   return (
     <div className="background-container">
-      <img src={blob} className="blob-bot"/>
-      <img src={blob} className="blob-top"/>
       <div className='game-container'>
-        {gameOn ? <Game/>: <Start beginGame={beginGame}/> }
+        {gameOn ? allQuestions: <Start beginGame={beginGame}/> }
       </div>
     </div>
   );
