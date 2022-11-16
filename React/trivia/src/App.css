@@ -3,16 +3,16 @@
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
 }
 .blob-bot {
-position: absolute;
+position: sticky;
 bottom: 0%;
 }
 .blob-top {
-  position: absolute;
+  position: sticky;
   right: 0%;
   filter: brightness(0) saturate(100%) invert(87%) sepia(3%) saturate(3066%) hue-rotate(345deg) brightness(113%) contrast(104%);
   transform: rotate(-180deg);
@@ -24,20 +24,12 @@ bottom: 0%;
   align-items: center;
   text-align: center;
   width: 75%;
+  min-height: 100vh;
   margin: auto;
   flex-direction: column;
 }
 /* Intro page */
-.start-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 75%;
-  height: 100vh;
-  margin: auto;
-  flex-direction: column;
-}
+
 .title {
 font-size: 3.8rem;
 text-align: center;
@@ -67,16 +59,38 @@ cursor: pointer;
 .start-game:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
-.not-selected-button {
+/* main game page */
+.button-answer {
   border: 0.8px solid #4D5B9E;
   border-radius: 8px;
-  height: 30px;
-  margin: 2px 5px;
+  height: 35px;
+  margin: 5px 5px;
+  padding: 3px;
+  width: 25%;
   cursor: pointer;
 }
 .button-answer:active{
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
+.button-answer:hover{
+  background: #D6DBF5;
+}
 hr {
   width: 75vw;
+}
+.answers {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+@media screen and (max-width:720px) {
+  .answers{
+    flex-direction: column;
+  }
+  .button-answer {
+    height: auto;
+    width: 50%;
+  }
 }
