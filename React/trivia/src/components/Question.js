@@ -1,33 +1,49 @@
 import {useEffect, useState} from "react"
+import {nanoid} from 'nanoid'
 
 export default function Game(props){
-    const [selected, setSelected] = useState(false)
+
     const [randomArray, setRandomArray] = useState([])
-    const styles= {
-        backgroundColor: selected ? "red":"white"
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [isSelected, setIsSelected] = useState(false)
+    
+    function handleClick() {
+        setIsDisabled(true)
+        setIsSelected(true)
     }
-    let selectClick= (e) => {
-        e.value==="correct" ? console.log('correct'):console.log()
-    }
+
     // to get json into html
     function htmlDecode(input) {
         let decode = new DOMParser().parseFromString(input, "text/html")
         return decode.documentElement.textContent
     }
     // creating array with all answers
+    const correctID=nanoid()
+    const incorrectID=[nanoid(), nanoid(), nanoid()]
+    let counter=0
     let correct =<button 
-        className="button-answer"
-        onClick={selectClick}
+        id= {correctID}
+        className={isSelected ? "selected":"button-answer"}
         value="correct"
-        selected={false}>
+        onClick={() => {
+            handleClick()
+            document.getElementById(correctID).className="selected"
+            }}>
         {htmlDecode(props.correct_answer)}</button>
     let incorrect = props.incorrect_answers
     let allAnswers = incorrect.map(answer => {
+        let id= incorrectID[counter]
+        counter++
         return(
             <button 
-            className="button-answer"
-            onClick={selectClick}
-            value="incorrect">
+            id={id}
+            className={isSelected ? "selected":"button-answer"}
+            value="incorrect"
+            onClick={() => {
+                handleClick()
+                document.getElementById(id).className="selected"
+            }}
+            >
             {htmlDecode(answer)}</button>
         )
     })
@@ -46,6 +62,7 @@ export default function Game(props){
         }
     return array;
     }
+
     useEffect(() => {
         setRandomArray(shuffle(allAnswers))
      }, [props.result])
@@ -53,7 +70,7 @@ export default function Game(props){
     return (
         <div>
             <h3>{htmlDecode(props.question)}</h3>
-            <div className="answers">{randomArray}
+            <div className={isDisabled ? "disabled":"answers"} >{randomArray}
             </div>
             <hr/>
         </div>)

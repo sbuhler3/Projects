@@ -69,6 +69,12 @@ cursor: pointer;
   width: 25%;
   cursor: pointer;
 }
+button {
+font-family: 'Inter';
+font-size: 14px;
+font-weight: medium;
+line-height: 12px;
+}
 .button-answer:active{
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
@@ -85,12 +91,36 @@ hr {
   align-items: center;
   text-align: center;
 }
+.disabled {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
 @media screen and (max-width:720px) {
   .answers{
     flex-direction: column;
   }
+  .disabled {
+    flex-direction: column;
+  }
   .button-answer {
-    height: auto;
+    height: 35px;
     width: 50%;
   }
+  button.selected {
+    height: 35px;
+    width: 50%;
+  }
+}
+.selected {
+  border: 0.8px solid #4D5B9E;
+  border-radius: 8px;
+  height: 35px;
+  margin: 5px 5px;
+  padding: 3px;
+  width: 25%;
+  background: #D6DBF5;
 }

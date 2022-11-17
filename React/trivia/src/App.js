@@ -6,6 +6,8 @@ import Question from './components/Question'
 function App() {
   const [gameOn, setGameOn]=useState(false)
   const [questions, setQuestions]=useState([])
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+
   function beginGame(){
     setGameOn(true)
   }
@@ -23,12 +25,14 @@ const allQuestions= questions.map(results => {
   question={results.question}
   correct_answer={results.correct_answer}
   incorrect_answers={results.incorrect_answers}
+  answerCorrect= {() => setCorrectAnswers(prevValue => prevValue+1)}
   />)
 })
   return (
     <div className="background-container">
       <div className='game-container'>
         {gameOn ? allQuestions: <Start beginGame={beginGame}/> }
+        {correctAnswers}
       </div>
     </div>
   );
