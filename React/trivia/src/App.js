@@ -29,6 +29,17 @@ function App() {
       .then(data => setQuestions(data.results))
   },[])
 
+ // for game reset
+ function newQuestions(){
+  fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+      .then(res => res.json())
+      .then(data => setQuestions(data.results))
+      setCheckAnswers(false)
+      setCorrectAnswers(0)
+      setAnsweredQuestions(0)
+      setGameOn(false)
+ }
+
   const allQuestions= questions.map(results => {
     return(<Question
     result={results}
@@ -36,6 +47,7 @@ function App() {
     correct_answer={results.correct_answer}
     incorrect_answers={results.incorrect_answers}
     updateAnswers= {updateAnswers}
+    checkAnswers={checkAnswers}
     />)
   })
 
@@ -45,9 +57,11 @@ function App() {
         {gameOn ? allQuestions: <Start beginGame={beginGame}/> }
         {answeredQuestions===5 && !checkAnswers ? 
         <button
+        className='check'
         onClick={handleClick}>Check Answers</button>:null}
-        {checkAnswers ? <h2>You got {correctAnswers}/{questions.length} correct</h2>
-        :null}
+        {checkAnswers ? <div><h2>You got {correctAnswers}/{questions.length} correct</h2>
+        <button className='play-again'onClick={newQuestions}>
+          Play again?</button></div>:null}
       </div>
     </div>
   );

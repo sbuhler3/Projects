@@ -50,7 +50,7 @@ export default function Question(props){
         )
     })
     allAnswers.push(correct)
-    console.log(randomArray)
+    console.log(props.checkAnswers)
     
 
     //randomize array and keep it from populating correct answer repeatedly

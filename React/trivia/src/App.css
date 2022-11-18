@@ -63,10 +63,10 @@ cursor: pointer;
 .button-answer {
   border: 0.8px solid #4D5B9E;
   border-radius: 8px;
-  height: 35px;
+  height: 54px;
   margin: 5px 5px;
   padding: 3px;
-  width: 25%;
+  width: 50%;
   cursor: pointer;
 }
 button {
@@ -100,27 +100,39 @@ hr {
   pointer-events: none;
 }
 @media screen and (max-width:720px) {
-  .answers{
+  .answers, .disabled {
     flex-direction: column;
   }
-  .disabled {
-    flex-direction: column;
+  .button-answer,  {
+    height: 45px;
+    width: 60%;
   }
-  .button-answer {
-    height: 35px;
-    width: 50%;
-  }
-  button.selected {
-    height: 35px;
-    width: 50%;
-  }
+  
 }
 .selected {
   border: 0.8px solid #4D5B9E;
   border-radius: 8px;
-  height: 35px;
+  height: 54px;
   margin: 5px 5px;
   padding: 3px;
-  width: 25%;
+  width: 50%;
+  cursor: pointer;
   background: #D6DBF5;
+}
+/* end game */
+.check, .play-again{
+margin-bottom: 5px;
+background: #4D5B9E;
+border-radius: 15px;
+border: none;
+height: 40px;
+width: 150px;
+font-family: 'Inter';
+font-size: 1rem;
+text-align: center;
+color: #F5F7FB;
+cursor: pointer;
+}
+.check:active, .play-again:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
