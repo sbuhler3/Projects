@@ -1,16 +1,16 @@
 import {useEffect, useState} from "react"
 import {nanoid} from 'nanoid'
 
-export default function Game(props){
+export default function Question(props){
 
     const [randomArray, setRandomArray] = useState([])
     const [isDisabled, setIsDisabled] = useState(false)
     const [isSelected, setIsSelected] = useState(false)
     
-    function handleClick() {
+    function handleClick(value) {
         setIsDisabled(true)
-        setIsSelected(true)
-    }
+        setIsSelected(true)        }
+    
 
     // to get json into html
     function htmlDecode(input) {
@@ -26,8 +26,9 @@ export default function Game(props){
         className={isSelected ? "selected":"button-answer"}
         value="correct"
         onClick={() => {
-            handleClick()
+            handleClick("correct")
             document.getElementById(correctID).className="selected"
+            props.updateAnswers('correct')
             }}>
         {htmlDecode(props.correct_answer)}</button>
     let incorrect = props.incorrect_answers
@@ -42,6 +43,7 @@ export default function Game(props){
             onClick={() => {
                 handleClick()
                 document.getElementById(id).className="selected"
+                props.updateAnswers('incorrect')
             }}
             >
             {htmlDecode(answer)}</button>
@@ -71,6 +73,7 @@ export default function Game(props){
         <div>
             <h3>{htmlDecode(props.question)}</h3>
             <div className={isDisabled ? "disabled":"answers"} >{randomArray}
+            {props.correctAnswers}
             </div>
             <hr/>
         </div>)
