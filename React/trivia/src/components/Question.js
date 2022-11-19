@@ -5,9 +5,6 @@ export default function Question(props) {
   const [randomArray, setRandomArray] = useState([]);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-  const styles={
-    color: props.revealAnswers ? "blue":null
-  }
 
   function handleClick(value) {
     setIsDisabled(true);
@@ -26,12 +23,7 @@ export default function Question(props) {
   let correct = (
     <button
       id={correctID}
-      className={
-         isSelected
-          ? "selected"
-          : "button-answer"
-      }
-      style={styles}
+      className={isSelected ? "selected" : "button-answer"}
       value="correct"
       onClick={() => {
         handleClick("correct");
@@ -78,17 +70,37 @@ export default function Question(props) {
     return array;
   }
 
+  //function to reveal answers with check button
+  function revealAnswers() {
+    if (props.checkAnswers) {
+      setRandomArray((oldArray) =>
+        oldArray.map((item) => {
+          return item.props.value === "correct"
+            ? {
+                ...item,
+                props: {
+                  ...item.props,
+                  className: "correct-answer",
+                },
+              }
+            : item;
+        })
+      );
+    }
+  }
+
+  useEffect(() => {
+    revealAnswers();
+  }, [props.checkAnswers]);
+
   useEffect(() => {
     setRandomArray(shuffle(allAnswers));
   }, [props.result]);
- console.log(randomArray)
 
   return (
     <div>
       <h3>{htmlDecode(props.question)}</h3>
-      <div className={isDisabled ? "disabled" : "answers"}>
-        {randomArray}
-      </div>
+      <div className={isDisabled ? "disabled" : "answers"}>{randomArray}</div>
       <hr />
     </div>
   );

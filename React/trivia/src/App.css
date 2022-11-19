@@ -17,6 +17,7 @@
   margin: auto;
   flex-direction: column;
 }
+
 /* Intro page */
 
 .title {
@@ -124,5 +125,12 @@ hr {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 .correct-answer {
-  background: green;
+  background: #94d7a2;
+  border: 0.8px solid #4d5b9e;
+  border-radius: 8px;
+  height: 54px;
+  margin: 5px 5px;
+  padding: 3px;
+  width: 50%;
+  cursor: pointer;
 }

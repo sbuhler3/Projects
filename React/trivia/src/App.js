@@ -8,7 +8,6 @@ function App() {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState(0);
   const [checkAnswers, setCheckAnswers] = useState(false);
-  const [revealAnswers, setRevealAnswers] =useState(false)
 
   function beginGame() {
     setGameOn(true);
@@ -21,7 +20,6 @@ function App() {
   //check answers button to appear
   function handleClick() {
     setCheckAnswers(true);
-    setRevealAnswers(true)
   }
   //call API
   useEffect(() => {
@@ -29,7 +27,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => setQuestions(data.results));
   }, []);
-  
+
   // for game reset
   function newQuestions() {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -38,7 +36,6 @@ function App() {
     setCheckAnswers(false);
     setCorrectAnswers(0);
     setAnsweredQuestions(0);
-    setRevealAnswers(false)
     setGameOn(false);
   }
 
@@ -51,7 +48,6 @@ function App() {
         incorrect_answers={results.incorrect_answers}
         updateAnswers={updateAnswers}
         checkAnswers={checkAnswers}
-        revealAnswers={revealAnswers}
       />
     );
   });
