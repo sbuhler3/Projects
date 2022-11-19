@@ -1,22 +1,11 @@
 .background-container {
-  background-color: #F5F7FB;
+  background-color: #f5f7fb;
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100%;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-}
-.blob-bot {
-position: sticky;
-bottom: 0%;
-}
-.blob-top {
-  position: sticky;
-  right: 0%;
-  filter: brightness(0) saturate(100%) invert(87%) sepia(3%) saturate(3066%) hue-rotate(345deg) brightness(113%) contrast(104%);
-  transform: rotate(-180deg);
-  
 }
 .game-container {
   display: flex;
@@ -31,37 +20,37 @@ bottom: 0%;
 /* Intro page */
 
 .title {
-font-size: 3.8rem;
-text-align: center;
-color: #293264;
-margin: 0;
+  font-size: 3.8rem;
+  text-align: center;
+  color: #293264;
+  margin: 0;
 }
 .description {
-font-family: 'Inter';
-font-size: 1.5rem;
-line-height: 19px;
-text-align: center;
-color: #293264;
-padding: 20px;
+  font-family: "Inter";
+  font-size: 1.5rem;
+  line-height: 19px;
+  text-align: center;
+  color: #293264;
+  padding: 20px;
 }
 .start-game {
-background: #4D5B9E;
-border-radius: 15px;
-border: none;
-height: 52px;
-width: 196px;
-font-family: 'Inter';
-font-size: 1.5rem;
-text-align: center;
-color: #F5F7FB;
-cursor: pointer;
+  background: #4d5b9e;
+  border-radius: 15px;
+  border: none;
+  height: 52px;
+  width: 196px;
+  font-family: "Inter";
+  font-size: 1.5rem;
+  text-align: center;
+  color: #f5f7fb;
+  cursor: pointer;
 }
 .start-game:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 /* main game page */
 .button-answer {
-  border: 0.8px solid #4D5B9E;
+  border: 0.8px solid #4d5b9e;
   border-radius: 8px;
   height: 54px;
   margin: 5px 5px;
@@ -70,69 +59,70 @@ cursor: pointer;
   cursor: pointer;
 }
 button {
-font-family: 'Inter';
-font-size: 14px;
-font-weight: medium;
-line-height: 12px;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: medium;
+  line-height: 12px;
 }
-.button-answer:active{
+.button-answer:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
-.button-answer:hover{
-  background: #D6DBF5;
+.button-answer:hover {
+  background: #d6dbf5;
 }
 hr {
   width: 75vw;
 }
 .answers {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 .disabled {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
   pointer-events: none;
 }
-@media screen and (max-width:720px) {
-  .answers, .disabled {
+@media screen and (max-width: 720px) {
+  .answers,
+  .disabled {
     flex-direction: column;
   }
-  .button-answer,  {
-    height: 45px;
-    width: 60%;
-  }
-  
 }
 .selected {
-  border: 0.8px solid #4D5B9E;
+  border: 0.8px solid #4d5b9e;
   border-radius: 8px;
   height: 54px;
   margin: 5px 5px;
   padding: 3px;
   width: 50%;
   cursor: pointer;
-  background: #D6DBF5;
+  background: #d6dbf5;
 }
 /* end game */
-.check, .play-again{
-margin-bottom: 5px;
-background: #4D5B9E;
-border-radius: 15px;
-border: none;
-height: 40px;
-width: 150px;
-font-family: 'Inter';
-font-size: 1rem;
-text-align: center;
-color: #F5F7FB;
-cursor: pointer;
+.check,
+.play-again {
+  margin-bottom: 5px;
+  background: #4d5b9e;
+  border-radius: 15px;
+  border: none;
+  height: 40px;
+  width: 150px;
+  font-family: "Inter";
+  font-size: 1rem;
+  text-align: center;
+  color: #f5f7fb;
+  cursor: pointer;
 }
-.check:active, .play-again:active {
+.check:active,
+.play-again:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+.correct-answer {
+  background: green;
 }
