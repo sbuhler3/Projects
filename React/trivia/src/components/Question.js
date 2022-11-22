@@ -22,6 +22,7 @@ export default function Question(props) {
   let counter = 0;
   let correct = (
     <button
+      key={correctID}
       id={correctID}
       className={isSelected ? "selected" : "button-answer"}
       value="correct"
@@ -40,6 +41,7 @@ export default function Question(props) {
     counter++;
     return (
       <button
+        key={id}
         id={id}
         className={isSelected ? "selected" : "button-answer"}
         value="incorrect"
