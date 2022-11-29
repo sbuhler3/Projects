@@ -4,6 +4,11 @@
   text-align: center;
   align-items: center;
   height: 100vh;
+  margin: 10px;
+}
+.intro-text{
+  font-size: 22px;
+  margin: 10px 30px;
 }
 .form-container{
   display: flex;
@@ -15,7 +20,7 @@
   justify-content:center;
   background-color: #7fb767;
   box-shadow: 10px 5px 5px gray;
-  width: 50%;
+  width: 55%;
   padding: 15px;
   border-radius: 15px;
 }

@@ -70,10 +70,10 @@ export default function Login(){
         <h2>This is an app where you can track the amount of time 
             you are burning fat in a workout.
         </h2>
-        <h3>How it works: Target heart rate zones will be calculated either 
+        <p className="intro-text"><strong>How it works:</strong> Target heart rate zones will be calculated either 
             by your max heart rate or age adjusted max heart rate. Based on this result you then
              select the exercise you did while in that target heart zone and it will estimate the amount of calories you burned.
-        </h3>
+        </p>
         {createUser ? 
         <div className="form-container">
         <Register/>

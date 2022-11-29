@@ -11,12 +11,14 @@ export default function Register(){
             return /\S+@\S+\.\S+/.test(val)
         })),
         password: yup.string()
+        .required(),
+        age: yup.string()
         .required()
     })
      
   return(
         <Formik
-        initialValues={{firstName: '', lastName:'', email: '', password:'', confirmPassword:''}}
+        initialValues={{firstName: '', lastName:'', email: '', maxHR: '', age:'',password:'', confirmPassword:''}}
         validationSchema={schemaValidation}
         onSubmit={(values,actions) => {
             actions.resetForm()
@@ -32,7 +34,7 @@ export default function Register(){
                 value={props.values.firstName}
                 onBlur={props.handleBlur('firstName')}/>
                 <div className='error-message'>{props.touched.firstName && props.values.firstName.length<1 ?
-                "Must enter a first name":null}</div>
+                "must enter a first name":null}</div>
 
                 <input 
                 className='field'
@@ -40,6 +42,25 @@ export default function Register(){
                 placeholder="Last Name"
                 onChange={props.handleChange('lastName')}
                 value={props.values.lastName}/><br/>
+
+        <input 
+                className='field'
+                type="text"
+                placeholder="Your Age"
+                onChange={props.handleChange('age')}
+                value={props.values.age}
+                onBlur={props.handleBlur('age')}/>
+                <div className='error-message'>{props.touched.age && props.errors.age}</div>
+                
+                <input 
+                className='field'
+                type="text"
+                placeholder="Your Max Heartrate(HR)"
+                onChange={props.handleChange('maxHR')}
+                value={props.values.maxHR}
+                onBlur={props.handleBlur('maxHR')}/>
+                <div className='error-message'>{(props.touched.maxHR && props.values.maxHR<=0 && "You can not have a negative heart rate")||
+                (props.touched.maxHR && props.values.maxHR<50 && "That's a low max heartrate. You should maybe get checked by a doctor!") }</div>
 
                 <input 
                 className='field'
