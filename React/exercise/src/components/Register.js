@@ -55,7 +55,7 @@ export default function Register(){
                 <input 
                 className='field'
                 type="text"
-                placeholder="Your Max Heartrate(HR)"
+                placeholder="Max Heartrate(HR)"
                 onChange={props.handleChange('maxHR')}
                 value={props.values.maxHR}
                 onBlur={props.handleBlur('maxHR')}/>
