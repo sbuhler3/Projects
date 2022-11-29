@@ -1,24 +1,28 @@
-import React from "react";
+import { useState } from "react";
 import {Formik} from 'formik'
 import * as yup from 'yup'
+import Register from './Register'
 
 export default function Login(){
-   
+    const [createUser, setCreateUser]=useState(false)
+
     const schemaValidation = yup.object({
         email: yup.string()
         .required()
-        .test('testing email',"Must enter a valid email",(val => {
+        .test('testing email',"must enter a valid email",(val => {
             return /\S+@\S+\.\S+/.test(val)
         })),
         password: yup.string()
         .required()
     })
-    return(
-    <div>
-        <h1>Welcome to MyExercise!</h1>
-        <h2>This is an app where you can track the amount of time 
-            you are burning fat in a workout.
-        </h2>
+
+    const handleClick=()=>{
+        console.log(createUser)
+       return setCreateUser(!createUser)
+    }
+
+    const LoginForm = ()=>{
+        return <>
         <Formik
         initialValues={{email: '', password:''}}
         validationSchema={schemaValidation}
@@ -31,27 +35,55 @@ export default function Login(){
                 <div>
                
                 <input 
+                className="field"
                 type="email"
                 placeholder="Email"
                 onChange={props.handleChange('email')}
                 value={props.values.email}
                 onBlur={props.handleBlur('email')}/>
-                <div>{props.touched.email && props.errors.email}</div>
-
+                <div className="error-message">{props.touched.email && props.errors.email}</div>
+    
                 <input
+                className="field"
                 type="password"
                 placeholder="Password"
                 onChange={props.handleChange('password')}
                 value={props.values.password}
                 onBlur={props.handleBlur('password')}/>
-                <div>{props.touched.password && props.errors.password}</div>
-
+                <div className="error-message">{props.touched.password && props.errors.password}</div>
+    
                 <input 
+                className="intro-button"
                 type="submit"
-                value="Log In"
-                onClick={props.handleSubmit}/>
-
+                value="Login"
+                onClick={props.handleSubmit}
+                disabled={!(props.dirty && props.isValid)}/>
+    
                 </div>))}
         </Formik>
+        <button className="intro-button"onClick={handleClick}>Create User</button></>
+    } 
+    
+    return(
+    <div className="Intro-container">
+        <h1>Welcome to MyExercise!</h1>
+        <h2>This is an app where you can track the amount of time 
+            you are burning fat in a workout.
+        </h2>
+        <h3>How it works: Target heart rate zones will be calculated either 
+            by your max heart rate or age adjusted max heart rate. Based on this result you then
+             select the exercise you did while in that target heart zone and it will estimate the amount of calories you burned.
+        </h3>
+        {createUser ? 
+        <div className="form-container">
+        <Register/>
+        <button className="intro-button" onClick={handleClick}>Return to Login</button>
+        </div>
+        :
+        <div className="form-container">
+        <LoginForm/>
+        </div>
+       }
+        
     </div>
 )}
