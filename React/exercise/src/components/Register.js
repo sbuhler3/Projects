@@ -15,7 +15,30 @@ export default function Register(){
         age: yup.string()
         .required()
     })
-     
+        //function for customized errors for age and heartrate
+    function error(prop,variable){
+        if (variable==='age'){
+                if (prop.values.age===''){
+                    return 'you must enter an age'
+                } else if (prop.values.age<0){
+                    return 'you cannot enter a negative age!'
+                } else if (prop.values.age<=6){
+                    return 'impressed somebody so young wants to exercise'
+                } 
+                
+        }else if (variable==='maxHR'){
+            if (prop.values.maxHR===''){
+                return null
+            }
+            else if (prop.values.maxHR<0){
+                return "you can not have a negative heart rate"
+            }else if (prop.values.maxHR<60){
+                return 'that is a low maxHR maybe check with your doctor'
+            }else if (prop.values.maxHR>=220){
+                return 'impossible to have a maxHR that high!'
+            } 
+        }
+    }
   return(
         <Formik
         initialValues={{firstName: '', lastName:'', email: '', maxHR: '', age:'',password:'', confirmPassword:''}}
@@ -50,7 +73,7 @@ export default function Register(){
                 onChange={props.handleChange('age')}
                 value={props.values.age}
                 onBlur={props.handleBlur('age')}/>
-                <div className='error-message'>{props.touched.age && props.errors.age}</div>
+                <div className='error-message'>{props.touched.age && error(props,'age')}</div>
                 
                 <input 
                 className='field'
@@ -59,8 +82,7 @@ export default function Register(){
                 onChange={props.handleChange('maxHR')}
                 value={props.values.maxHR}
                 onBlur={props.handleBlur('maxHR')}/>
-                <div className='error-message'>{(props.touched.maxHR && props.values.maxHR<=0 && "You can not have a negative heart rate")||
-                (props.touched.maxHR && props.values.maxHR<50 && "That's a low max heartrate. You should maybe get checked by a doctor!") }</div>
+                <div className='error-message'>{props.touched.maxHR && error(props,'maxHR') }</div>
 
                 <input 
                 className='field'

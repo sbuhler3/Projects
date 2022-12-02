@@ -39,6 +39,9 @@
 }
 .error-message{
   color: red;
+  width:95%;
+  margin-left: 5px;
+  
 }
 
 .intro-button {
