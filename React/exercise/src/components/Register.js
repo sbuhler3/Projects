@@ -1,7 +1,9 @@
 import { Formik } from "formik";
+import { useState } from "react";
 import * as yup from "yup";
 
 export default function Register(props) {
+  const [validSignup, setValidSignup] = useState(false);
   const schemaValidation = yup.object({
     firstName: yup.string().required(),
     email: yup
@@ -17,25 +19,31 @@ export default function Register(props) {
   function error(prop, variable) {
     if (variable === "age") {
       if (prop.values.age === "") {
+        setValidSignup(false);
         return "you must enter an age";
       } else if (prop.values.age < 0) {
+        setValidSignup(false);
         return "you cannot enter a negative age!";
       } else if (prop.values.age <= 6) {
-        return "impressed somebody so young wants to exercise";
+        setValidSignup(false);
+        return "you're a little young to be doing this";
       } else {
-        return true;
+        setValidSignup(true);
       }
     } else if (variable === "maxHR") {
       if (prop.values.maxHR === "") {
-        return true;
+        setValidSignup(true);
       } else if (prop.values.maxHR < 0) {
+        setValidSignup(false);
         return "you can not have a negative heart rate";
       } else if (prop.values.maxHR < 60) {
+        setValidSignup(false);
         return "that is a low maxHR maybe check with your doctor";
       } else if (prop.values.maxHR >= 220) {
+        setValidSignup(false);
         return "impossible to have a maxHR that high!";
       } else {
-        return true;
+        setValidSignup(true);
       }
     }
   }
@@ -154,8 +162,7 @@ export default function Register(props) {
                 props.dirty &&
                 props.isValid &&
                 props.values.password === props.values.confirmPassword &&
-                error(props, "age") &&
-                error(props, "maxHR")
+                validSignup
               )
             }
           />
