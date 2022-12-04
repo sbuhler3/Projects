@@ -27,7 +27,11 @@ export default function Register(props) {
       } else if (prop.values.age <= 6) {
         setValidSignup(false);
         return "you're a little young to be doing this";
-      } else {
+      } else if (isNaN(prop.values.age)) {
+        setValidSignup(false);
+        console.log(validSignup);
+        return "you must enter a number";
+      } else if (!isNaN(prop.values.age)) {
         setValidSignup(true);
       }
     } else if (variable === "maxHR") {
