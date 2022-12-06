@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 function App() {
   const [validUser, setValidUser] = useState(false);
   const valid = () => setValidUser(!validUser);
+  console.log(validUser);
   return (
     <div className="App">
       {validUser ? (
