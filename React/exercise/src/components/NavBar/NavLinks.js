@@ -1,5 +1,6 @@
 import { BiDumbbell, BiRun, BiHome, BiLogOut } from "react-icons/bi";
-export default function NavLinks() {
+export default function NavLinks(props) {
+  console.log(props.setValidUser);
   return (
     <ul className="navbar-items">
       <li className="navbar-item">
@@ -14,7 +15,7 @@ export default function NavLinks() {
         <BiRun size={20} className="icon" />
         Cardio Log
       </li>
-      <li className="navbar-item">
+      <li className="navbar-item" onClick={props.setValidUser}>
         <BiLogOut size={20} className="icon" />
         Log out
       </li>

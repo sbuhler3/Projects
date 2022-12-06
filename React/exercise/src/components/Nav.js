@@ -8,8 +8,8 @@ export default function Nav(props) {
   return (
     <nav className="navbar">
       <h4 className="nav-sitename">MyExercise</h4>
-      <ComputerNav />
-      <MobileNav />
+      <ComputerNav setValidUser={props.setValidUser} />
+      <MobileNav setValidUser={props.setValidUser} />
     </nav>
   );
 }
