@@ -78,15 +78,14 @@ export default function Login(props) {
     <div className="Intro-container">
       <h1 className="header">Welcome to MyExercise!</h1>
       <h2 className="header-info">
-        This is an app where you can track the amount of time you are burning
-        fat in a workout.
+        This is an app where you can track your strength and cardio exercises in
+        an easily accessible way!
       </h2>
       <p className="intro-text">
-        <strong>How it works:</strong> Target heart rate zones will be
-        calculated either by your max heart rate or age adjusted max heart rate.
-        Based on this result you then select the exercise you did while in that
-        target heart zone and it will estimate the amount of calories you
-        burned.
+        <strong>How it works:</strong> Based on your age, a max heartrate(HR)
+        will be calcuated. You can use this maxHR as a way to pace your
+        exercises. This app will also allow you to track the different exercises
+        completed and highlight if you have increased the intensity in anyway.
       </p>
       {createUser ? (
         <div className="form-container">
