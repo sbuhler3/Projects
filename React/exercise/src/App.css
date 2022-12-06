@@ -82,6 +82,7 @@
 .navbar-items {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 .navbar-item {
   padding: 15px;
@@ -125,4 +126,7 @@
     border-top: 2px solid white;
     opacity: 95%;
   }
+}
+.icon {
+  padding-right: 10px;
 }
