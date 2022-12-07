@@ -10,7 +10,7 @@ export default function MobileNav(props) {
   return (
     <nav className="mobileNav">
       <FiMenu className="hamburger" size={40} onClick={handleClick} />
-      {openMenu && <NavLinks setValidUser={props.setValidUser} />}
+      {openMenu && props.children}
     </nav>
   );
 }
