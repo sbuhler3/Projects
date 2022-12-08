@@ -1,27 +1,25 @@
 import { useState } from "react";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
-import Nav from "./components/Nav";
-import ComputerNav from "./components/NavBar/ComputerNav";
-import MobileNav from "./components/NavBar/MobileNav";
-import NavLinks from "./components/NavBar/NavLinks";
+import Nav from "./components//NavBar/Nav";
+import Home from "./components/Pages/Home";
+import Strength from "./components/Pages/Strength";
+import Cardio from "./components/Pages/Cardio";
+
 function App() {
   const [validUser, setValidUser] = useState(false);
   const valid = () => setValidUser(!validUser);
-  console.log(validUser);
   return (
     <div className="App">
       {validUser ? (
         <>
-          <Nav>
-            <ComputerNav>
-              <NavLinks setValidUser={valid} />
-            </ComputerNav>
-            <MobileNav>
-              <NavLinks setValidUser={valid} />
-            </MobileNav>
-          </Nav>
-          <h1>valid user logged on</h1>
+          <Nav setValidUser={valid} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/strength" element={<Strength />} />
+            <Route path="/cardio" element={<Cardio />} />
+          </Routes>
         </>
       ) : (
         <Login setValidUser={valid} />

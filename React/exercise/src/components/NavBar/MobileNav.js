@@ -1,4 +1,3 @@
-import NavLinks from "./NavLinks";
 import { FiMenu } from "react-icons/fi";
 import { useState } from "react";
 
