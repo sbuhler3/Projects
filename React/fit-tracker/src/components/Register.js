@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function Register() {
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -60,7 +60,7 @@ export default function Register() {
   return success ? (
     <h1>success</h1>
   ) : (
-    <div className="Intro-container">
+    <div className="intro-container">
       <h1 className="header">Welcome to FitTracker!</h1>
       <h2 className="header-info">
         This is an app where you can track your strength and cardio exercises in
