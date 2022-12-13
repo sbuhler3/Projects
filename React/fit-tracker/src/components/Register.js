@@ -2,29 +2,29 @@ import React, { useRef, useState, useEffect } from "react";
 import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function Register() {
-  const EMAIL_REGEX = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
   const nameRef = useRef();
   const errorRef = useRef();
 
   const [name, setName] = useState("");
-  const [nameFocus, setNameFocus] = useState(false);
+  const [nameTouched, setNameTouched] = useState(false);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
-  const [emailFocus, setEmailFocus] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
 
   const [age, setAge] = useState("");
   const [validAge, setValidAge] = useState(false);
-  const [ageFocus, setAgeFocus] = useState(false);
+  const [ageTouched, setAgeTouched] = useState(false);
 
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
+  const [pwdTouched, setPwdTouched] = useState(false);
 
   const [matchPwd, setMatchPwd] = useState("");
-  const [validMatchPwd, setMatchValidPwd] = useState(false);
-  const [matchPwdFocus, setMatchPwdFocus] = useState(false);
+  const [validMatchPwd, setValidMatchPwd] = useState(false);
+  const [matchPwdTouched, setMatchPwdTouched] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -45,14 +45,21 @@ export default function Register() {
 
   useEffect(() => {
     const matchingPwd = pwd === matchPwd;
-    setMatchValidPwd(matchingPwd);
+    setValidMatchPwd(matchingPwd);
   }, [pwd, matchPwd]);
 
   useEffect(() => {
     setErrMsg("");
   }, [email, age, pwd, matchPwd]);
 
-  return (
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("submitted");
+    setSuccess(true);
+  }
+  return success ? (
+    <h1>success</h1>
+  ) : (
     <div className="Intro-container">
       <h1 className="header">Welcome to FitTracker!</h1>
       <h2 className="header-info">
@@ -70,18 +77,18 @@ export default function Register() {
           {errMsg}
         </p>
       </section>
-      <form className="form-container">
+      <form className="form-container" onSubmit={handleSubmit}>
         <h2>Register</h2>
         <input
           className="field"
           ref={nameRef}
           type="text"
           placeholder="Name"
+          autoComplete="none"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
-          onFocus={() => setNameFocus(true)}
-          onBlur={() => setNameFocus(false)}
+          onBlur={() => setNameTouched(true)}
         />
         <input
           className="field"
@@ -91,19 +98,28 @@ export default function Register() {
           autoComplete="none"
           onChange={(e) => setEmail(e.target.value)}
           required
-          onFocus={() => setEmailFocus(true)}
-          onBlur={() => setEmailFocus(false)}
+          onBlur={() => setEmailTouched(true)}
         />
+        <span
+          className={!validEmail && emailTouched ? "error-message" : "hide"}
+        >
+          <FaInfoCircle className="info-circle" />
+          Not a valid email
+        </span>
         <input
           className="field"
           type="text"
           value={age}
           placeholder="Age"
+          autoComplete="none"
           onChange={(e) => setAge(e.target.value)}
           required
-          onFocus={() => setAgeFocus(true)}
-          onBlur={() => setAgeFocus(false)}
+          onBlur={() => setAgeTouched(true)}
         />
+        <span className={!validAge && ageTouched ? "error-message" : "hide"}>
+          <FaInfoCircle className="info-circle" />
+          Must set an age between 0-99
+        </span>
 
         <input
           className="field"
@@ -112,8 +128,7 @@ export default function Register() {
           placeholder="Password"
           onChange={(e) => setPwd(e.target.value)}
           required
-          onFocus={() => setPwdFocus(true)}
-          onBlur={() => setPwdFocus(false)}
+          onBlur={() => setPwdTouched(true)}
         />
         <input
           className="field"
@@ -122,9 +137,16 @@ export default function Register() {
           placeholder="Confirm password"
           onChange={(e) => setMatchPwd(e.target.value)}
           required
-          onFocus={() => setMatchPwdFocus(true)}
-          onBlur={() => setMatchPwdFocus(false)}
+          onBlur={() => setMatchPwdTouched(true)}
         />
+        <span
+          className={
+            !validMatchPwd && matchPwdTouched ? "error-message" : "hide"
+          }
+        >
+          <FaInfoCircle className="info-circle" />
+          Passwords do not match
+        </span>
         <button
           className="intro-button"
           disabled={!name || !validEmail || !validAge || !pwd || !validMatchPwd}
