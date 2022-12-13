@@ -19,8 +19,6 @@ export default function Register() {
   const [ageTouched, setAgeTouched] = useState(false);
 
   const [pwd, setPwd] = useState("");
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdTouched, setPwdTouched] = useState(false);
 
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatchPwd, setValidMatchPwd] = useState(false);
@@ -70,7 +68,7 @@ export default function Register() {
         <strong>How it works:</strong> Based on your age, a max heartrate(HR)
         will be calcuated. You can use this maxHR as a way to pace your
         exercises. This app will also allow you to track the different exercises
-        completed and highlight if you have increased the intensity in anyway.
+        completed.
       </p>
       <section>
         <p ref={errorRef} className={errMsg ? "error-message" : "hide"}>
@@ -128,7 +126,6 @@ export default function Register() {
           placeholder="Password"
           onChange={(e) => setPwd(e.target.value)}
           required
-          onBlur={() => setPwdTouched(true)}
         />
         <input
           className="field"
