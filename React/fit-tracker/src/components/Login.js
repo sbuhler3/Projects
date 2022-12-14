@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
+import Nav from "./NavBar/Nav";
+import Home from "./Pages/Home";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -33,8 +35,13 @@ export default function Login() {
     console.log("clicked");
   }
 
-  return (
+  return validUser ? (
     <>
+      <Nav />
+      <Home />
+    </>
+  ) : (
+    <div className="intro-container">
       <form className="form-container" onSubmit={handleSubmit}>
         <h2>Log in</h2>
         <input
@@ -77,6 +84,6 @@ export default function Login() {
           </Link>
         </div>
       </form>
-    </>
+    </div>
   );
 }

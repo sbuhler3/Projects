@@ -1,4 +1,4 @@
-export default function MainPage() {
+export default function Home() {
   return (
     <div>
       <p>This is the main page</p>
