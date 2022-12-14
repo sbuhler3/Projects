@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function NavLinks(props) {
   return (
     <ul className="navbar-items">
-      <Link to="/">
+      <Link to="/home">
         {" "}
         <li className="navbar-item">
           <BiHome size={30} className="icon" />
@@ -28,10 +28,12 @@ export default function NavLinks(props) {
           Cardio Log
         </li>
       </Link>
-      <li className="navbar-item" onClick={props.setValidUser}>
-        <BiLogOut size={30} className="icon" />
-        Log out
-      </li>
+      <Link to="/login">
+        <li className="navbar-item" onClick={props.setValidUser}>
+          <BiLogOut size={30} className="icon" />
+          Log out
+        </li>
+      </Link>
     </ul>
   );
 }
