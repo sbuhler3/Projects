@@ -1,3 +1,4 @@
+import React from "react";
 import { BiDumbbell, BiRun, BiHome, BiLogOut } from "react-icons/bi";
 import { Link } from "react-router-dom";
 export default function NavLinks(props) {

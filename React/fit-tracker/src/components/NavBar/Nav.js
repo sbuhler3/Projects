@@ -1,3 +1,4 @@
+import React from "react";
 import ComputerNav from "./ComputerNav";
 import MobileNav from "./MobileNav";
 import NavLinks from "./NavLinks";
