@@ -61,11 +61,10 @@ a {
   }
 }
 .error-message {
-  color: red;
+  color: #a90e0e;
   width: auto;
   border-radius: 10px;
   padding: 10px;
-  background-color: black;
 }
 .info-circle {
   margin-right: 0.5rem;

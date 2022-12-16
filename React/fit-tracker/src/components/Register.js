@@ -61,8 +61,8 @@ export default function Register() {
     <div className="intro-container">
       <h1 className="header">Welcome to FitTracker!</h1>
       <h2 className="header-info">
-        This is an app where you can track your strength and cardio exercises in
-        an easily accessible way!
+        This is an app where you track your strength and cardio exercises in an
+        easily accessible way!
       </h2>
       <p className="intro-text">
         <strong>How it works:</strong> Based on your age, a max heartrate(HR)
