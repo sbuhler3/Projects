@@ -84,6 +84,9 @@ a {
   padding: 20px;
   font-size: large;
 }
+.intro-button:disabled {
+  cursor: default;
+}
 .already-registered {
   position: absolute;
   left: 30px;

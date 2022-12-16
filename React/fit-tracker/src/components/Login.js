@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const emailRef = useRef();
+  const navigate = useNavigate();
 
   const [validUser, setValidUser] = useState(false);
 
@@ -30,6 +31,7 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     setValidUser(true);
+    navigate("/home", { replace: true });
     console.log("clicked");
   }
 
@@ -66,11 +68,9 @@ export default function Login() {
           <FaInfoCircle className="info-circle" />
           Must enter a password
         </span>
-        <Link to="/home">
-          <button className="intro-button" disabled={!validEmail || !pwd}>
-            Log in
-          </button>
-        </Link>
+        <button className="intro-button" disabled={!validEmail || !pwd}>
+          Log in
+        </button>
         <br />
         <div className="already-registered">
           Return to{" "}
