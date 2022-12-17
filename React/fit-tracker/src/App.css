@@ -176,27 +176,37 @@ a {
   left: 50px;
   text-align: center;
 }
-.heart-container {
+.heart-rate,
+.recommended {
   display: flex;
-  gap: 80px;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  margin-top: 50px;
-}
-.heart-zone {
-  border-radius: 50%;
-  width: 175px;
-  height: 175px;
-  display: flex;
-  align-items: center;
+  flex-direction: column;
+  font-size: 32px;
+  width: 75vw;
   justify-content: center;
-  color: whitesmoke;
-  font-weight: 800;
+  align-items: center;
+  align-self: center;
+  padding: 100px 5px;
+  border: solid 4px #7fb767;
+  text-align: center;
+  margin: 30px 20px;
+  border-radius: 5px;
 }
-
-@media screen and (max-width: 780px) {
-  .heart-container {
-    flex-direction: column;
+.heart-rate {
+  z-index: -1;
+  box-shadow: 50px 30px forestgreen;
+}
+.recommended {
+  box-shadow: -50px 30px forestgreen;
+}
+@media screen and (max-width: 720px) {
+  .heart-rate {
+    box-shadow: 20px 5px forestgreen;
+    width: 60vw;
+    font-size: 16px;
+  }
+  .recommended {
+    box-shadow: -20px 5px forestgreen;
+    width: 60vw;
+    font-size: 16px;
   }
 }
