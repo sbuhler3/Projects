@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export default function Register() {
-  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
   const nameRef = useRef();
   const errorRef = useRef();

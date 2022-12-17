@@ -3,12 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 
 export default function Login() {
-  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const emailRef = useRef();
   const navigate = useNavigate();
 
   const [validUser, setValidUser] = useState(false);
-
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
@@ -32,7 +31,6 @@ export default function Login() {
     e.preventDefault();
     setValidUser(true);
     navigate("/home", { replace: true });
-    console.log("clicked");
   }
 
   return (

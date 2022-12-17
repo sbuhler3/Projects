@@ -158,3 +158,45 @@ a {
 .icon {
   padding-right: 10px;
 }
+/*Home page*/
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+}
+.welcome-text {
+  color: #7fb767;
+  margin-top: 20px;
+  width: fit-content;
+  align-self: flex-end;
+  padding: 20px;
+  font-size: 27px;
+  font-weight: 700;
+  left: 50px;
+  text-align: center;
+}
+.heart-container {
+  display: flex;
+  gap: 80px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  margin-top: 50px;
+}
+.heart-zone {
+  border-radius: 50%;
+  width: 175px;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 780px) {
+  .heart-container {
+    flex-direction: column;
+  }
+}
