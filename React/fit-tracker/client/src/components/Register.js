@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export default function Register() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
   const nameRef = useRef();
   const errorRef = useRef();
 
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [nameTouched, setNameTouched] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -52,8 +53,11 @@ export default function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
-    setSuccess(true);
+    axios
+      .post("http://localhost:3001/register", { userName, email, age, pwd })
+      .then((res) => {
+        console.log(res);
+      });
   }
   return success ? (
     <h1>success</h1>
@@ -83,8 +87,8 @@ export default function Register() {
           type="text"
           placeholder="Name"
           autoComplete="none"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           required
           onBlur={() => setNameTouched(true)}
         />
@@ -146,7 +150,9 @@ export default function Register() {
         </span>
         <button
           className="intro-button"
-          disabled={!name || !validEmail || !validAge || !pwd || !validMatchPwd}
+          disabled={
+            !userName || !validEmail || !validAge || !pwd || !validMatchPwd
+          }
         >
           Sign up
         </button>
