@@ -88,10 +88,10 @@ export default function Register() {
         completed.
       </p>
       <section>
-        <p className={errMsg ? "error-message" : "hide"}>
+        <h3 className={errMsg ? "error-message" : "hide"}>
           <FaInfoCircle className="info-circle" />
           {errMsg}
-        </p>
+        </h3>
       </section>
       <form className="form-container" onSubmit={handleSubmit}>
         <h2>Register</h2>
