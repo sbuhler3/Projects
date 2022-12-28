@@ -1,15 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function Register() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
   const nameRef = useRef();
-  const errorRef = useRef();
+  const navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
-  const [nameTouched, setNameTouched] = useState(false);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -26,7 +25,7 @@ export default function Register() {
   const [matchPwdTouched, setMatchPwdTouched] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+
   //set mouse to first box on input
   useEffect(() => {
     nameRef.current.focus();
@@ -50,18 +49,32 @@ export default function Register() {
   useEffect(() => {
     setErrMsg("");
   }, [email, age, pwd, matchPwd]);
-
-  function handleSubmit(e) {
+  //POST to MYSQL
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3001/register", { userName, email, age, pwd })
-      .then((res) => {
-        console.log(res);
+    try {
+      const res = await axios.post("http://localhost:3001/register", {
+        userName,
+        email,
+        age,
+        pwd,
       });
-  }
-  return success ? (
-    <h1>success</h1>
-  ) : (
+      alert("registration successful!");
+      navigate("/login", { replace: true });
+      console.log(res.data);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response.status === 409) {
+        setErrMsg("Email already registered");
+      } else {
+        setErrMsg("Registration Failed");
+      }
+    }
+  };
+
+  //JSX
+  return (
     <div className="intro-container">
       <h1 className="header">Welcome to FitTracker!</h1>
       <h2 className="header-info">
@@ -75,7 +88,8 @@ export default function Register() {
         completed.
       </p>
       <section>
-        <p ref={errorRef} className={errMsg ? "error-message" : "hide"}>
+        <p className={errMsg ? "error-message" : "hide"}>
+          <FaInfoCircle className="info-circle" />
           {errMsg}
         </p>
       </section>
@@ -90,7 +104,6 @@ export default function Register() {
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
           required
-          onBlur={() => setNameTouched(true)}
         />
         <input
           className="field"

@@ -16,20 +16,30 @@ const db = mysql.createConnection({
   password: "fitpassword",
   database: "fitTrack",
 });
+//REGISTER
 
 app.post("/register", (req, res) => {
   const userName = req.body.userName;
   const email = req.body.email;
   const age = req.body.age;
   const pwd = req.body.pwd;
-  db.query(
-    "INSERT INTO users (userName, email, age, pwd) VALUES (?,?,?,?)",
-    [userName, email, age, pwd],
-    (err, result) => {
-      console.log(err);
-    }
-  );
+  //CHECK EXISTING USER
+  const q = "SELECT * FROM users WHERE email = ?";
+
+  db.query(q, email, (err, data) => {
+    if (err) return res.json(err);
+    if (data.length) return res.status(409).json("user exists");
+
+    const q = "INSERT INTO users (userName, email, age, pwd) VALUES (?,?,?,?)";
+    db.query(q, [userName, email, age, pwd], (err, data) => {
+      if (err) return res.json(err);
+      return res.status(200).json({ userName, email, age, pwd });
+    });
+  });
 });
+
+//LOGIN
+
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 });

@@ -8,9 +8,9 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [validUser, setValidUser] = useState(false);
+
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
-  const [emailTouched, setEmailTouched] = useState(false);
 
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
@@ -45,11 +45,8 @@ export default function Login() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onBlur={() => setEmailTouched(true)}
         />
-        <span
-          className={!validEmail && emailTouched ? "error-message" : "hide"}
-        >
+        <span className={!validEmail && email != "" ? "error-message" : "hide"}>
           <FaInfoCircle className="info-circle" />
           Not a valid email
         </span>
