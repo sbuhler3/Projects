@@ -11,7 +11,7 @@ export default function Home() {
           <div style={{ color: "rgb(127, 183, 103)" }}>
             <strong> low target zone 90-110 bpm</strong>
           </div>
-          <div c style={{ color: "rgb(246 171 34 / 80%)" }}>
+          <div style={{ color: "rgb(246 171 34 / 80%)" }}>
             {" "}
             <strong>moderate target zone 109-149 bpm </strong>
           </div>

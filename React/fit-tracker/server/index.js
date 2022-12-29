@@ -40,6 +40,22 @@ app.post("/register", (req, res) => {
 
 //LOGIN
 
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const pwd = req.body.pwd;
+
+  const q = "SELECT * FROM users WHERE email=? AND pwd=?";
+  db.query(q, [email, pwd], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length) {
+      res.status(200).json(data[0]);
+    } else {
+      res.status(404).json("User/password combination does not exist");
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 });

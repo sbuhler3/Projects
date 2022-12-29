@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
+import axios from "axios";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
@@ -13,8 +14,9 @@ export default function Login() {
   const [validEmail, setValidEmail] = useState(false);
 
   const [pwd, setPwd] = useState("");
-  const [validPwd, setValidPwd] = useState(false);
   const [pwdTouched, setPwdTouched] = useState(false);
+
+  const [errMsg, setErrMsg] = useState("");
 
   //set mouse to first box on input
   useEffect(() => {
@@ -27,14 +29,39 @@ export default function Login() {
     setValidEmail(result);
   }, [email]);
 
-  function handleSubmit(e) {
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, pwd]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setValidUser(true);
-    navigate("/home", { replace: true });
-  }
+    try {
+      const res = await axios.post("http://localhost:3001/login", {
+        email,
+        pwd,
+      });
+      console.log(res.data);
+      setValidUser(true);
+      navigate("/home", { replace: true });
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response.status === 404) {
+        setErrMsg("Email/Password combination does not exist");
+      } else {
+        setErrMsg("Log in Failed");
+      }
+    }
+  };
 
   return (
     <div className="intro-container">
+      <section>
+        <h3 className={errMsg ? "error-message" : "hide"}>
+          <FaInfoCircle className="info-circle" />
+          {errMsg}
+        </h3>
+      </section>
       <form className="form-container" onSubmit={handleSubmit}>
         <h2>Log in</h2>
         <input
