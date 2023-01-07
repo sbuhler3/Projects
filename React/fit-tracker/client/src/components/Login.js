@@ -42,7 +42,7 @@ export default function Login() {
       });
       console.log(res.data);
       setValidUser(true);
-      navigate("/home", { replace: true });
+      navigate("/home", { replace: true, state: res.data });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

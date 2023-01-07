@@ -1,24 +1,38 @@
 import React from "react";
 import Nav from "../NavBar/Nav";
+import { useLocation } from "react-router-dom";
 export default function Home() {
+  const { state } = useLocation();
+  const { userName, age } = state;
+  const ageAdjustedHR = 220 - age;
+  console.log(state);
+  console.log(ageAdjustedHR);
   return (
     <>
       <Nav />
       <div className="page-container">
-        <div className="welcome-text">Welcome Spencer!</div>
+        <div className="welcome-text">Welcome {userName}!</div>
         <div className="heart-rate">
           Based on your age your target heart rate zones are:
           <div style={{ color: "rgb(127, 183, 103)" }}>
-            <strong> low target zone 90-110 bpm</strong>
+            <strong>
+              {" "}
+              low target zone {Math.ceil(ageAdjustedHR * 0.57)}-
+              {Math.ceil(ageAdjustedHR * 0.63)} bpm
+            </strong>
           </div>
           <div style={{ color: "rgb(246 171 34 / 80%)" }}>
             {" "}
-            <strong>moderate target zone 109-149 bpm </strong>
+            <strong>
+              moderate target zone {Math.ceil(ageAdjustedHR * 0.64)}-
+              {Math.ceil(ageAdjustedHR * 0.76)} bpm{" "}
+            </strong>
           </div>
           <div>
             <strong style={{ color: "rgb(188 10 10 / 80%)" }}>
               {" "}
-              high target zone 150-190 bpm
+              high target zone {Math.ceil(ageAdjustedHR * 0.77)}-
+              {Math.ceil(ageAdjustedHR * 0.95)} bpm
             </strong>
           </div>
         </div>
