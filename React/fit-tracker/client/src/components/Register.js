@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Register() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
+  const PWD_REGEX = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
   const nameRef = useRef();
   const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ export default function Register() {
   const [ageTouched, setAgeTouched] = useState(false);
 
   const [pwd, setPwd] = useState("");
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdTouched, setPwdTouched] = useState(false);
 
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatchPwd, setValidMatchPwd] = useState(false);
@@ -40,6 +43,11 @@ export default function Register() {
     const result = AGE_REGEX.test(age);
     setValidAge(result);
   }, [age]);
+
+  useEffect(() => {
+    const result = PWD_REGEX.test(pwd);
+    setValidPwd(result);
+  }, [pwd]);
 
   useEffect(() => {
     const matchingPwd = pwd === matchPwd;
@@ -142,8 +150,14 @@ export default function Register() {
           value={pwd}
           placeholder="Password"
           onChange={(e) => setPwd(e.target.value)}
+          onBlur={() => setPwdTouched(true)}
           required
         />
+        <span className={!validPwd && pwdTouched ? "error-message" : "hide"}>
+          <FaInfoCircle className="info-circle" />
+          Password must include one uppercase, one lowercase, one number, and be
+          at least 6 characters.
+        </span>
         <input
           className="field"
           type="password"
