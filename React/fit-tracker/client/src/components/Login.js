@@ -1,14 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import axios from "axios";
+import { AuthContext } from "../context/authContext";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const emailRef = useRef();
   const navigate = useNavigate();
-
-  const [validUser, setValidUser] = useState(false);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -17,6 +16,9 @@ export default function Login() {
   const [pwdTouched, setPwdTouched] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
+
+  const { currentUser, login } = useContext(AuthContext);
+  console.log(currentUser);
 
   //set mouse to first box on input
   useEffect(() => {
@@ -36,13 +38,8 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/login", {
-        email,
-        pwd,
-      });
-      console.log(res.data);
-      setValidUser(true);
-      navigate("/home", { replace: true, state: res.data });
+      await login({ email, pwd });
+      navigate("/home", { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

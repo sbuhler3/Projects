@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Nav from "../NavBar/Nav";
 import { useLocation } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 export default function Home() {
-  const { state } = useLocation();
-  const { userName, age } = state;
+  const { currentUser } = useContext(AuthContext);
+
+  const { userName, age } = currentUser;
   const ageAdjustedHR = 220 - age;
-  console.log(state);
-  console.log(ageAdjustedHR);
+  console.log(currentUser);
   return (
     <>
       <Nav />

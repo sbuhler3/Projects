@@ -7,10 +7,10 @@ export default function Nav(props) {
     <nav className="navbar">
       <h4 className="nav-sitename">FitTracker</h4>
       <ComputerNav>
-        <NavLinks setValidUser={props.setValidUser} />
+        <NavLinks />
       </ComputerNav>
       <MobileNav>
-        <NavLinks setValidUser={props.setValidUser} />
+        <NavLinks />
       </MobileNav>
     </nav>
   );
