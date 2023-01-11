@@ -201,12 +201,12 @@ a {
 @media screen and (max-width: 720px) {
   .heart-rate {
     box-shadow: 20px 5px forestgreen;
-    width: 60vw;
-    font-size: 16px;
+    width: 70vw;
+    font-size: 25px;
   }
   .recommended {
     box-shadow: -20px 5px forestgreen;
-    width: 60vw;
-    font-size: 16px;
+    width: 70vw;
+    font-size: 22px;
   }
 }
