@@ -5,7 +5,7 @@ export default function Strength() {
     <>
       <Nav />
       <div className="page">
-        <nav className="monthNav">
+        <nav>
           <ul className="months">
             <li className="month" onClick={() => console.log("clicked month")}>
               Jan
