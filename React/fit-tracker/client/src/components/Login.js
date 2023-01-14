@@ -18,7 +18,6 @@ export default function Login() {
   const [errMsg, setErrMsg] = useState("");
 
   const { currentUser, login } = useContext(AuthContext);
-  console.log(currentUser);
 
   //set mouse to first box on input
   useEffect(() => {
