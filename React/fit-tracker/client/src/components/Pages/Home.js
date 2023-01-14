@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Nav from "../NavBar/Nav";
-import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 export default function Home() {
   const { currentUser } = useContext(AuthContext);

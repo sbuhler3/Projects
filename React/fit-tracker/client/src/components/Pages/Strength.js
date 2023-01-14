@@ -1,29 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "../NavBar/Nav";
 export default function Strength() {
+  const today = new Date();
+  const [month, setMonth] = useState(
+    today.toLocaleString("default", { month: "short" })
+  );
+
+  const handleClick = (e) => {
+    setMonth(e.currentTarget.innerText);
+  };
   return (
     <>
       <Nav />
       <div className="page">
         <nav>
           <ul className="months">
-            <li className="month" onClick={() => console.log("clicked month")}>
+            <li className="month" onClick={handleClick}>
               Jan
             </li>
-            <li className="month">Feb</li>
-            <li className="month">Mar</li>
-            <li className="month">Apr</li>
-            <li className="month">May</li>
-            <li className="month">Jun</li>
-            <li className="month">Jul</li>
-            <li className="month">Aug</li>
-            <li className="month">Sep</li>
-            <li className="month">Oct</li>
-            <li className="month">Nov</li>
-            <li className="month">Dec</li>
+            <li className="month" onClick={handleClick}>
+              Feb
+            </li>
+            <li className="month" onClick={handleClick}>
+              Mar
+            </li>
+            <li className="month" onClick={handleClick}>
+              Apr
+            </li>
+            <li className="month" onClick={handleClick}>
+              May
+            </li>
+            <li className="month" onClick={handleClick}>
+              Jun
+            </li>
+            <li className="month" onClick={handleClick}>
+              Jul
+            </li>
+            <li className="month" onClick={handleClick}>
+              Aug
+            </li>
+            <li className="month" onClick={handleClick}>
+              Sep
+            </li>
+            <li className="month" onClick={handleClick}>
+              Oct
+            </li>
+            <li className="month" onClick={handleClick}>
+              Nov
+            </li>
+            <li className="month" onClick={handleClick}>
+              Dec
+            </li>
           </ul>
         </nav>
-        <h1>Strength page</h1>
+        <h1>{month} Strength page</h1>
       </div>
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
-import axios from "axios";
 import { AuthContext } from "../context/authContext";
 
 export default function Login() {
@@ -17,7 +16,7 @@ export default function Login() {
 
   const [errMsg, setErrMsg] = useState("");
 
-  const { currentUser, login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   //set mouse to first box on input
   useEffect(() => {
@@ -69,7 +68,9 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <span className={!validEmail && email != "" ? "error-message" : "hide"}>
+        <span
+          className={!validEmail && email !== "" ? "error-message" : "hide"}
+        >
           <FaInfoCircle className="info-circle" />
           Not a valid email
         </span>
