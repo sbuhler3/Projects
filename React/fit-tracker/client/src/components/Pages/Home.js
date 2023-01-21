@@ -8,8 +8,10 @@ export default function Home() {
   const ageAdjustedHR = 220 - age;
   return (
     <>
-      <Nav />
-      <div className="page-container">
+      <header>
+        <Nav />
+      </header>
+      <main className="page-container">
         <div className="welcome-text">Welcome {userName}!</div>
         <div className="heart-rate">
           Based on your age your target heart rate zones are:
@@ -41,7 +43,7 @@ export default function Home() {
           a week. Exercise should then be followed up by 2-5 mins of cool down
           at your low target zone.
         </div>
-      </div>
+      </main>
     </>
   );
 }

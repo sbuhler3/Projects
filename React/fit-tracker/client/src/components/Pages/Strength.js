@@ -11,8 +11,10 @@ export default function Strength() {
   };
   return (
     <>
-      <Nav />
-      <div className="page">
+      <header>
+        <Nav />
+      </header>
+      <main className="page">
         <nav>
           <ul className="months">
             <li className="month" onClick={handleClick}>
@@ -54,7 +56,7 @@ export default function Strength() {
           </ul>
         </nav>
         <h1>{month} Strength page</h1>
-      </div>
+      </main>
     </>
   );
 }
