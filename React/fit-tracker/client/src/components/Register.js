@@ -133,7 +133,7 @@ export default function Register() {
         </span>
         <input
           className="field"
-          type="text"
+          type="number"
           value={age}
           placeholder="Age"
           autoComplete="none"
