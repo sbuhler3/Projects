@@ -68,12 +68,6 @@ export default function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <span
-          className={!validEmail && email !== "" ? "error-message" : "hide"}
-        >
-          <FaInfoCircle className="info-circle" />
-          Not a valid email
-        </span>
         <input
           className="field"
           type="password"

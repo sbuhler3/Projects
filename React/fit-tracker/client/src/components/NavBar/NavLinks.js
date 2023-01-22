@@ -21,12 +21,7 @@ export default function NavLinks() {
         </li>
       </Link>
       <Link to="/cardio">
-        <li
-          className="navbar-item"
-          onClick={() => {
-            console.log("clicked cardio");
-          }}
-        >
+        <li className="navbar-item">
           <BiRun size={30} className="icon" />
           Cardio Log
         </li>
