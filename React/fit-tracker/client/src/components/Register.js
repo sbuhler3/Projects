@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -6,7 +6,6 @@ export default function Register() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
   const PWD_REGEX = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
-  const nameRef = useRef();
   const navigate = useNavigate();
 
   const [userName, setUserName] = useState("");
@@ -29,10 +28,6 @@ export default function Register() {
 
   const [errMsg, setErrMsg] = useState("");
 
-  //set mouse to first box on input
-  useEffect(() => {
-    nameRef.current.focus();
-  }, []);
   //validating
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
@@ -107,10 +102,10 @@ export default function Register() {
         <h2>Register</h2>
         <input
           className="field"
-          ref={nameRef}
+          autoFocus
           type="text"
           placeholder="Name"
-          autoComplete="none"
+          autoComplete
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
           required
@@ -120,7 +115,7 @@ export default function Register() {
           type="email"
           value={email}
           placeholder="Email"
-          autoComplete="none"
+          autoComplete
           onChange={(e) => setEmail(e.target.value)}
           required
           onBlur={() => setEmailTouched(true)}
@@ -136,14 +131,16 @@ export default function Register() {
           type="number"
           value={age}
           placeholder="Age"
-          autoComplete="none"
+          min={8}
+          max={99}
+          autoComplete
           onChange={(e) => setAge(e.target.value)}
           required
           onBlur={() => setAgeTouched(true)}
         />
         <span className={!validAge && ageTouched ? "error-message" : "hide"}>
           <FaInfoCircle className="info-circle" />
-          Must set an age between 0-99
+          Must set an age between 8-99
         </span>
 
         <input

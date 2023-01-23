@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import { AuthContext } from "../context/authContext";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
-  const emailRef = useRef();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -17,11 +16,6 @@ export default function Login() {
   const [errMsg, setErrMsg] = useState("");
 
   const { login } = useContext(AuthContext);
-
-  //set mouse to first box on input
-  useEffect(() => {
-    emailRef.current.focus();
-  }, []);
 
   //validating email
   useEffect(() => {
@@ -62,7 +56,7 @@ export default function Login() {
         <input
           className="field"
           type="email"
-          ref={emailRef}
+          autoFocus
           required
           placeholder="Email"
           value={email}
