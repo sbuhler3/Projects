@@ -16,7 +16,9 @@ export default function Strength() {
         <Nav />
       </header>
       <main className="page">
-        <Sidebar handleClick={handleClickMonth} />
+        <aside>
+          <Sidebar handleClick={handleClickMonth} />
+        </aside>
         <h1>{month} Cardio page</h1>
       </main>
     </>

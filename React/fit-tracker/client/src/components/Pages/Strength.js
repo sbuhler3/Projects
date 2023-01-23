@@ -50,7 +50,9 @@ export default function Strength() {
         <Nav />
       </header>
       <main className="page">
-        <Sidebar handleClick={handleClickMonth} />
+        <aside>
+          <Sidebar handleClick={handleClickMonth} />
+        </aside>
         <div className="table-container">
           <h1>{month} Strength page</h1>
           <table>
