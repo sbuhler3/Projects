@@ -13,7 +13,7 @@ ul {
 a {
   text-decoration: none;
 }
-a:hover {
+li:hover {
   background-color: dimgray;
 }
 .logo {
@@ -30,25 +30,61 @@ a:hover {
   box-shadow: 0 5px 10px black;
   margin-bottom: 1em;
 }
+/* Mobile part of navbar*/
+.navButton {
+  font-size: 1.5em;
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 1em;
+}
 .mobilePageLinks {
+  margin: 0;
+  padding: 0;
   display: none;
-  padding: 1em;
   position: absolute;
   top: 80px;
-  background-color: red;
   right: 0;
+  width: 100%;
+  background-color: midnightblue;
+  opacity: 0.95;
+  border-top: solid black 1px;
   z-index: 1;
 }
-.pageLinks a {
+.mobilePageLinks a {
   font-size: 1.5em;
   color: silver;
-  padding: 0.5em;
+}
+.mobilePageLinks li {
+  padding: 1.5em 0.5em;
 }
 .show {
   display: block;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 721px) {
   .navButton {
+    display: none;
+  }
+  .show {
+    display: none;
+  }
+}
+/*desktop navbar*/
+.desktopPageLinks {
+  display: flex;
+  flex-direction: row;
+  max-height: 100%;
+}
+.desktopPageLinks li {
+  padding: 1em;
+  font-size: 1.8em;
+}
+.desktopPageLinks a {
+  color: silver;
+  text-align: center;
+}
+@media screen and (max-width: 720px) {
+  .desktopPageLinks {
     display: none;
   }
 }

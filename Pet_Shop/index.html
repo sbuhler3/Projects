@@ -15,9 +15,17 @@
           alt="Paradigm Pet Professionals logo"
           class="logo"
         />
-        <button class="navButton" onclick="handleClick()">Navigation</button>
-        <ul class="mobilePageLinks desktopLinks">
-          <li><a href="/cats.html">Cats</a></li>
+        <button class="navButton" onclick="handleClick()">
+          Navigation &#9660;
+        </button>
+        <ul class="mobilePageLinks">
+          <a href="/cats.html"><li>Cats</li></a>
+          <a href="#"><li>Dogs</li></a>
+          <a href="#"><li>Fish</li></a>
+          <a href="#"><li>Contact Us</li></a>
+        </ul>
+        <ul class="desktopPageLinks">
+          <li><a href="#">Cats</a></li>
           <li><a href="#">Dogs</a></li>
           <li><a href="#">Fish</a></li>
           <li><a href="#">Contact Us</a></li>
@@ -72,11 +80,22 @@
       </ul>
     </footer>
     <script>
-      const handleClick = (e) => {
-        const x = document
-          .querySelector("ul.mobilePageLinks")
-          .classList.toggle("show");
-        console.log(x);
+      const handleClick = () => {
+        document.querySelector("ul.mobilePageLinks").classList.toggle("show");
+      };
+      //close menu if clicked outside of
+      window.onclick = function (e) {
+        if (!e.target.matches(".navButton")) {
+          if (
+            document
+              .querySelector("ul.mobilePageLinks")
+              .classList.contains("show")
+          ) {
+            document
+              .querySelector("ul.mobilePageLinks")
+              .classList.remove("show");
+          }
+        }
       };
     </script>
   </body>
