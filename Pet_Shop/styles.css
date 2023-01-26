@@ -13,6 +13,7 @@ ul {
 }
 a {
   text-decoration: none;
+  color: dimgray;
 }
 li:hover {
   background-color: dimgray;
@@ -113,9 +114,10 @@ section {
 .animalSection {
   display: flex;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
-.animalSection:nth-of-type(odd),
-.animalHeader:nth-last-of-type(3) {
+.animalSection:nth-of-type(odd) {
   flex-direction: row-reverse;
 }
 
@@ -123,6 +125,7 @@ section {
   display: flex;
   color: midnightblue;
   font-size: 1.75em;
+  padding: 0.75em 0;
 }
 /*footer*/
 footer {
