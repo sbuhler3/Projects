@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Site for Paradigm Pet Professionals" />
+    <title>Paradigm Pet Professionals</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <img
+          src="./images/petLogo.png"
+          alt="Paradigm Pet Professionals logo"
+          class="logo"
+        />
+        <button class="navButton" onclick="handleClick()">Navigation</button>
+        <ul class="mobilePageLinks desktopLinks">
+          <li><a href="/cats.html">Cats</a></li>
+          <li><a href="#">Dogs</a></li>
+          <li><a href="#">Fish</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="mainPageContainer">
+      <section class="mainContent">
+        Pets are nature's gift to humanity. It has been scientifically proven
+        that opening our homes and hearts to a pet increases our longevity and
+        improves our overall quality of life as well as the lives of our pets.
+        At Pet Paradigm Professionals, our mission is to offer resources to help
+        you care for your furry, scaly, feathery, and slimy loved ones. Our pet
+        experts—or “Pexperts”—have been working with pet owners and
+        professionals alike for the past twelve years. They offer one-on-one
+        consultations with current and prospective pet owners as well as group
+        presentations designed for veterinary, pet shelter, and pet breeding
+        professionals.
+      </section>
+      <section class="mainContent">
+        Looking for basic pet care advice for the most common type of pets? Need
+        additional help determining which type of pet is right for you and your
+        family? We will work with you and provide tailored evidence-based pet
+        care to ensure lifelong health and wellness of your new companion.
+      </section>
+      <section class="mainContent">
+        We are also happy to help you navigate the adoption process! We will
+        guide you through each step in the process from determining which type
+        of pet is best suited for your family and home environment, to
+        completing the necessary paperwork, to bringing your new loved one home.
+        Please fill out our contact form to request a consultation. We will
+        contact you within 48 hours to schedule a consultation. All fields are
+        required.
+      </section>
+    </main>
+    <footer>
+      Looking for your new best friend? The following organizations can help you
+      find and adopt the perfect companion:
+      <ul>
+        <li>
+          <a>General Adoption Resources https://theshelterpetproject.org/ </a>
+        </li>
+        <li><a>ASPCA: https://www.aspca.org/ </a></li>
+        <li>
+          <a
+            >Fish Rescue:
+            https://www.sterlingshelter.org/humane-society/koi-fish-rescue/</a
+          >
+        </li>
+        <li><a>Snake Rescue: https://savethesnakes.org/snakerescuecall/</a></li>
+        <li><a>Bird Rescue: https://ftlob.rescuegroups.org/</a></li>
+      </ul>
+    </footer>
+    <script>
+      const handleClick = (e) => {
+        const x = document
+          .querySelector("ul.mobilePageLinks")
+          .classList.toggle("show");
+        console.log(x);
+      };
+    </script>
+  </body>
+</html>

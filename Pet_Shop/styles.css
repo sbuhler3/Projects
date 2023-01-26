@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  min-width: 100vw;
+}
+ul {
+  text-decoration: none;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  background-color: dimgray;
+}
+.logo {
+  height: 70%;
+  margin: 5px;
+}
+.navbar {
+  background-color: midnightblue;
+  height: 80px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 5px 10px black;
+  margin-bottom: 1em;
+}
+.mobilePageLinks {
+  display: none;
+  padding: 1em;
+  position: absolute;
+  top: 80px;
+  background-color: red;
+  right: 0;
+  z-index: 1;
+}
+.pageLinks a {
+  font-size: 1.5em;
+  color: silver;
+  padding: 0.5em;
+}
+.show {
+  display: block;
+}
+@media screen and (min-width: 600px) {
+  .navButton {
+    display: none;
+  }
+}
