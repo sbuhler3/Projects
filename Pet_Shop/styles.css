@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 header {
   min-width: 100vw;
@@ -36,6 +37,8 @@ li:hover {
   cursor: pointer;
   border-radius: 10px;
   margin-right: 1em;
+  border: none;
+  box-shadow: 5px 5px 10px black;
 }
 .mobilePageLinks {
   margin: 0;
@@ -68,7 +71,7 @@ li:hover {
 }
 .desktopPageLinks li {
   padding: 1em;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 .desktopPageLinks a {
   color: silver;
@@ -83,7 +86,6 @@ li:hover {
   display: flex;
   flex-direction: column;
   min-height: 80vh;
-  align-items: center;
   justify-content: center;
 }
 section {
@@ -98,21 +100,29 @@ section {
   padding: 0.25em 0;
 }
 
-@media screen and (max-width: 720px) {
-  .desktopPageLinks {
-    display: none;
-  }
-  .mainPageContainer {
-    padding: 1em;
-  }
+/*animal pages*/
+.animalPic {
+  border-radius: 10%;
+  height: 40%;
+  width: 40%;
+  object-fit: contain;
 }
-@media screen and (min-width: 721px) {
-  .navButton {
-    display: none;
-  }
-  .show {
-    display: none;
-  }
+.animalText {
+  width: 60%;
+}
+.animalSection {
+  display: flex;
+  gap: 10px;
+}
+.animalSection:nth-of-type(odd),
+.animalHeader:nth-last-of-type(3) {
+  flex-direction: row-reverse;
+}
+
+.animalHeader {
+  display: flex;
+  color: midnightblue;
+  font-size: 1.75em;
 }
 /*footer*/
 footer {
@@ -139,4 +149,37 @@ footer li {
 }
 footer li:hover {
   background-color: midnightblue;
+}
+
+@media screen and (max-width: 720px) {
+  .desktopPageLinks {
+    display: none;
+  }
+  .mainPageContainer {
+    padding: 1em;
+  }
+  .animalPic {
+    border-radius: 10%;
+    width: 90%;
+  }
+  .animalText {
+    width: 90%;
+  }
+  .animalSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .animalSection:nth-of-type(odd),
+  .animalHeader:nth-last-of-type(3) {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 721px) {
+  .navButton {
+    display: none;
+  }
+  .show {
+    display: none;
+  }
 }
