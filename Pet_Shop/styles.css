@@ -78,7 +78,9 @@ li:hover {
   color: silver;
   text-align: center;
 }
-
+.active {
+  background-color: yellow;
+}
 /*main page*/
 .mainPageContainer {
   background-color: white;
@@ -168,6 +170,29 @@ section {
   font-size: 1.75em;
   padding: 0.75em 0;
   line-height: 1em;
+}
+.tableSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5em;
+  min-height: 50vh;
+}
+table {
+  border: solid 0.25em midnightblue;
+  text-align: left;
+  margin-bottom: 1em;
+  border-radius: 15px;
+  border-collapse: collapse;
+  width: 95%;
+}
+th {
+  border-bottom: solid 0.15em midnightblue;
+  background-color: silver;
+  padding: 10px;
+}
+td {
+  padding: 10px;
 }
 
 /*footer*/

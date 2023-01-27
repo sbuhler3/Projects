@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Site for Paradigm Pet Professionals" />
+    <title>Paradigm Pet Professionals</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <img
+          src="./images/petLogo.png"
+          alt="Paradigm Pet Professionals logo"
+          class="logo"
+        />
+        <button class="navButton" onclick="handleClick()">
+          Navigation &#9660;
+        </button>
+        <ul class="mobilePageLinks">
+          <a href="./index.html"><li>Home</li></a>
+          <a href="./cat.html"><li>Cats</li></a>
+          <a href="./dog.html"><li>Dogs</li></a>
+          <a href="./fish.html"><li>Fish</li></a>
+        </ul>
+        <ul class="desktopPageLinks">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./cat.html">Cats</a></li>
+          <li><a href="./dog.html">Dogs</a></li>
+          <li><a href="./fish.html">Fish</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="mainPageContainer">
+      <section class="animalSection">
+        <div class="animalText">
+          Fish represent a broad class of aquatic animals that can live in fresh
+          or saltwater, depending on the species. Bringing fish into your home
+          can be an exciting hobby, especially if you intend to breed them, and
+          the presence of a fish tank in your home can induce feelings of peace
+          and tranquility.
+        </div>
+        <img src="./images/fish2.png" alt="fish" class="animalPic" } />
+      </section>
+      <section class="animalSection">
+        <div class="animalText">
+          Whether you are bringing your fish home for the first time or
+          maintaining your aquarium, it is important to test your water once per
+          week to ensure it is free from toxins that can harm your fish.
+        </div>
+        <img class="animalPic" src="./images/fish1.png" alt="fish in a bowl" />
+      </section>
+      <section>
+        <div>
+          <h3>Freshwater Fish</h3>
+          <br />
+          There are several freshwater fish to choose from when setting up your
+          aquarium, but it is best to consult with a “Pexpert” to ensure your
+          fish will get along! No matter the species, ensure your fish are
+          suited for a freshwater environment by investing in a water testing
+          kit. Follow these general water chemistry guidelines to ensure your
+          fish will adapt well to your aquarium and avoid ingesting toxins that
+          can harm or kill your fish:<br /><br />
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>pH Level</th>
+                <th>Ammonia</th>
+                <th>Nitrates</th>
+                <th>Nitrites</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6.8-7.6(7.0 considered neutral)</td>
+                <td>any level above zero is harmful</td>
+                <td>5 to 10 ppm</td>
+                <td>less than 0.5 ppm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Saltwater Fish</h3>
+          <br />
+          Saltwater fish also offer several options when it comes to choosing
+          among species for your aquarium. As with freshwater fish, consult with
+          a “Pexpert” to ensure your fish will get along are suited for a
+          saltwater environment. Following these general guidelines to avoid
+          dangerous water conditions and ensure the appropriate salinity level
+          for your fishies:<br /><br />
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Salinity</th>
+                <th>pH Level</th>
+                <th>Ammonia</th>
+                <th>Nitrates</th>
+                <th>Nitrites</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1.020-1.028 sg</td>
+                <td>7.6-8.4 (7.0 considered neutral)</td>
+                <td>any level above 0.1 ppm requires attention</td>
+                <td>10-40 ppm</td>
+                <td>less than 0.2 ppm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <script>
+      const handleClick = () => {
+        document.querySelector("ul.mobilePageLinks").classList.toggle("show");
+      };
+      //close menu if clicked outside of
+      window.onclick = function (e) {
+        if (!e.target.matches(".navButton")) {
+          if (
+            document
+              .querySelector("ul.mobilePageLinks")
+              .classList.contains("show")
+          ) {
+            document
+              .querySelector("ul.mobilePageLinks")
+              .classList.remove("show");
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
