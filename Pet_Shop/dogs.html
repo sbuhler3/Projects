@@ -19,20 +19,24 @@
           Navigation &#9660;
         </button>
         <ul class="mobilePageLinks">
-          <a href="./index.html"><li>Home</li></a>
-          <a href="./cat.html"><li>Cats</li></a>
-          <a href="./dog.html"><li>Dogs</li></a>
-          <a href="./fish.html"><li>Fish</li></a>
+          <a class href="./home.html"><li>Home</li></a>
+          <a class href="./cats.html"><li>Cats</li></a>
+          <a class href="./dogs.html"><li>Dogs</li></a>
+          <a class href="./fish.html"><li>Fish</li></a>
         </ul>
         <ul class="desktopPageLinks">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./cat.html">Cats</a></li>
-          <li><a href="./dog.html">Dogs</a></li>
-          <li><a href="./fish.html">Fish</a></li>
+          <li class="link"><a href="./home.html">Home</a></li>
+          <li class="link"><a href="./cats.html">Cats</a></li>
+          <li class="link"><a href="./dogs.html">Dogs</a></li>
+          <li class="link"><a href="./fish.html">Fish</a></li>
         </ul>
       </nav>
     </header>
     <main class="mainPageContainer">
+      <span>
+        <a href="#Exercise">Exercise</a> <a href="#Grooming">Grooming</a
+        ><a href="#Vaccinations">Vaccinations</a></span
+      >
       <section>
         <em
           >The domestic dog is an extremely social animal and offers a diverse
@@ -55,7 +59,7 @@
 
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">Diet & Exercise</h3>
+          <h3 class="animalHeader" id="Exercise">Diet & Exercise</h3>
           Throughout dogs&#39;s lifespans, they should generally be fed fewer
           meals as they mature. Puppies should be nursed the first two months,
           then introduced to three meals per day when they are about three to
@@ -88,7 +92,7 @@
       </section>
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">Grooming & Handling</h3>
+          <h3 class="animalHeader" id="Grooming">Grooming & Handling</h3>
           Keeping your furry family member clean is important to its health. So
           be sure to brush frequently to reduce the amount of shedding and
           prevent matted and tangled fur that can prove to be extremely
@@ -110,7 +114,9 @@
 
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">Vaccinations & Medications</h3>
+          <h3 class="animalHeader" id="Vaccinations">
+            Vaccinations & Medications
+          </h3>
           You should always consult with your veterinarian, but there is a core
           set of vaccines that are typically recommended. Vaccines that reduce
           the exposure risk to things such as hepatitis, rabies, and parvovirus.
@@ -145,6 +151,14 @@
           }
         }
       };
+      //adding background to current page
+      let elements = document.querySelectorAll(".link");
+      let pathElement = location.pathname;
+      elements.forEach((el) => {
+        if (pathElement.includes(el.outerText.toLowerCase())) {
+          el.classList.add("active");
+        }
+      });
     </script>
   </body>
 </html>

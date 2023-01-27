@@ -19,20 +19,24 @@
           Navigation &#9660;
         </button>
         <ul class="mobilePageLinks">
-          <a href="./index.html"><li>Home</li></a>
-          <a href="./cat.html"><li>Cats</li></a>
-          <a href="./dog.html"><li>Dogs</li></a>
+          <a href="./home.html"><li>Home</li></a>
+          <a href="./cats.html"><li>Cats</li></a>
+          <a href="./dogs.html"><li>Dogs</li></a>
           <a href="./fish.html"><li>Fish</li></a>
         </ul>
         <ul class="desktopPageLinks">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./cat.html">Cats</a></li>
-          <li><a href="./dog.html">Dogs</a></li>
-          <li><a href="./fish.html">Fish</a></li>
+          <li class="link"><a href="./home.html">Home</a></li>
+          <li class="link"><a href="./cats.html">Cats</a></li>
+          <li class="link"><a href="./dogs.html">Dogs</a></li>
+          <li class="link"><a href="./fish.html">Fish</a></li>
         </ul>
       </nav>
     </header>
     <main class="mainPageContainer">
+      <span>
+        <a href="#Freshwater">Freshwater</a>
+        <a href="#Saltwater">Saltwater</a></span
+      >
       <section class="animalSection">
         <div class="animalText">
           Fish represent a broad class of aquatic animals that can live in fresh
@@ -53,7 +57,7 @@
       </section>
       <section>
         <div>
-          <h3>Freshwater Fish</h3>
+          <h3 id="Freshwater">Freshwater Fish</h3>
           <br />
           There are several freshwater fish to choose from when setting up your
           aquarium, but it is best to consult with a “Pexpert” to ensure your
@@ -83,7 +87,7 @@
           </table>
         </div>
         <div>
-          <h3>Saltwater Fish</h3>
+          <h3 id="Saltwater">Saltwater Fish</h3>
           <br />
           Saltwater fish also offer several options when it comes to choosing
           among species for your aquarium. As with freshwater fish, consult with
@@ -133,6 +137,14 @@
           }
         }
       };
+      //adding background to current page
+      let elements = document.querySelectorAll(".link");
+      let pathElement = location.pathname;
+      elements.forEach((el) => {
+        if (pathElement.includes(el.outerText.toLowerCase())) {
+          el.classList.add("active");
+        }
+      });
     </script>
   </body>
 </html>

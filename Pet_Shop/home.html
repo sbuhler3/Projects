@@ -19,16 +19,16 @@
           Navigation &#9660;
         </button>
         <ul class="mobilePageLinks">
-          <a href="./index.html"><li>Home</li></a>
-          <a href="./cat.html"><li>Cats</li></a>
-          <a href="./dog.html"><li>Dogs</li></a>
+          <a href="./home.html"><li>Home</li></a>
+          <a href="./cats.html"><li>Cats</li></a>
+          <a href="./dogs.html"><li>Dogs</li></a>
           <a href="./fish.html"><li>Fish</li></a>
         </ul>
         <ul class="desktopPageLinks">
-          <li class="desktopPageLink"><a href="./index.html">Home</a></li>
-          <li class="desktopPageLink"><a href="./cat.html">Cats</a></li>
-          <li class="desktopPageLink"><a href="./dog.html">Dogs</a></li>
-          <li class="desktopPageLink"><a href="./fish.html">Fish</a></li>
+          <li class="link"><a href="./home.html">Home</a></li>
+          <li class="link"><a href="./cats.html">Cats</a></li>
+          <li class="link"><a href="./dogs.html">Dogs</a></li>
+          <li class="link"><a href="./fish.html">Fish</a></li>
         </ul>
       </nav>
     </header>
@@ -68,7 +68,6 @@
             name="personName"
             placeholder="John Doe"
             required
-            autofocus
             autocomplete="given-name"
           />
           <label for="cell">Phone Number:</label>
@@ -179,6 +178,14 @@
           }
         }
       };
+      //adding background to current page
+      let elements = document.querySelectorAll(".link");
+      let pathElement = location.pathname;
+      elements.forEach((el) => {
+        if (pathElement.includes(el.outerText.toLowerCase())) {
+          el.classList.add("active");
+        }
+      });
     </script>
   </body>
 </html>

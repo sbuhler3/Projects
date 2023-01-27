@@ -19,20 +19,26 @@
           Navigation &#9660;
         </button>
         <ul class="mobilePageLinks">
-          <a href="./index.html"><li>Home</li></a>
-          <a href="./cat.html"><li>Cats</li></a>
-          <a href="./dog.html"><li>Dogs</li></a>
-          <a href="./fish.html"><li>Fish</li></a>
+          <a class="link" href="./home.html"><li>Home</li></a>
+          <a class="link" href="./cats.html"><li>Cats</li></a>
+          <a class="link" href="./dogs.html"><li>Dogs</li></a>
+          <a class="link" href="./fish.html"><li>Fish</li></a>
         </ul>
         <ul class="desktopPageLinks">
-          <li><a href="./index.html">Home</a></li>
-          <li><a href="./cat.html">Cats</a></li>
-          <li><a href="./dog.html">Dogs</a></li>
-          <li><a href="./fish.html">Fish</a></li>
+          <li class="link"><a href="./home.html">Home</a></li>
+          <li class="link"><a href="./cats.html">Cats</a></li>
+          <li class="link"><a href="./dogs.html">Dogs</a></li>
+          <li class="link"><a href="./fish.html">Fish</a></li>
         </ul>
       </nav>
     </header>
     <main class="mainPageContainer">
+      <span>
+        <a href="#Zero">Zero to Four Weeks</a>
+        <a href="#One">Four Weeks to One Year</a
+        ><a href="#OneSeven">One Year to Seven Year</a
+        ><a href="#Seven">Seven+ Years</a></span
+      >
       <section>
         <em
           >Cats were first domesticated around 7500 BCE in the western Asia
@@ -46,7 +52,7 @@
 
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">Zero to Four Weeks</h3>
+          <h3 class="animalHeader" id="Zero">Zero to Four Weeks</h3>
           It is important the queen (a term commonly used for a female cat that
           is either pregnant or nursing) directly nurse her young if possible.
           Monitor your kitten&#39;s growth closely to make sure its growth rate
@@ -62,7 +68,7 @@
       </section>
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">Four Weeks to One Year Kittens</h3>
+          <h3 class="animalHeader" id="One">Four Weeks to One Year Kittens</h3>
           Kittens can start being introduced to soft wet kitten food typically
           around three to four weeks after birth. According to the ASPCA,
           kittens at this age should eat half to one cup of dry kitten food or
@@ -78,7 +84,7 @@
       </section>
       <section class="animalSection">
         <div class="animalText">
-          <h3 class="animalHeader">One Year to Seven Years</h3>
+          <h3 class="animalHeader" id="OneSeven">One Year to Seven Years</h3>
           This age is when kittens reach the cat stage and do not need as many
           nutrients. At this age, their level of activity decreases, and so does
           their metabolism. It is not recommended to leave food out for the cats
@@ -89,7 +95,7 @@
         <img src="./images/cat2.png" alt="a cat" class="animalPic" />
       </section>
       <section>
-        <h3 class="animalHeader">Seven Years and More</h3>
+        <h3 class="animalHeader" id="Seven">Seven Years and More</h3>
         Much like many living organisms, the body begins to deteriorate and
         experience a lot of changes. Cats at this age should eat less fats and
         calories and more quality proteins. This means when you are purchasing
@@ -117,6 +123,14 @@
           }
         }
       };
+      //adding background to current page
+      let elements = document.querySelectorAll(".link");
+      let pathElement = location.pathname;
+      elements.forEach((el) => {
+        if (pathElement.includes(el.outerText.toLowerCase())) {
+          el.classList.add("active");
+        }
+      });
     </script>
   </body>
 </html>
