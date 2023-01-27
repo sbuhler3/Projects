@@ -81,7 +81,7 @@ li:hover {
 
 /*main page*/
 .mainPageContainer {
-  background-color: silver;
+  background-color: white;
   padding: 1.5em;
   gap: 20px;
   display: flex;
@@ -95,15 +95,57 @@ section {
   font-weight: 700;
   line-height: 1.25em;
 }
-#mainPage {
-  border-top: 0.1em solid black;
-  border-bottom: 0.1em solid black;
-  padding: 0.25em 0;
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  align-items: center;
 }
-
+.homePic {
+  width: 80%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.mainContent:first-of-type {
+  grid-template-columns: 1fr 1fr;
+}
+/* contact form*/
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: skyblue;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 7px 7px 10px black;
+}
+.contactForm label {
+  color: white;
+  font-size: 1em;
+  margin-bottom: 0.25em;
+}
+.contactForm input,
+.contactForm select {
+  padding: 0.75em 0.5em;
+  font-size: 1em;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  color: midnightblue;
+}
+.contactForm button {
+  width: 50%;
+  padding: 0.5em;
+  margin: auto;
+  font-size: 1.2em;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  color: midnightblue;
+  border: none;
+  cursor: pointer;
+}
 /*animal pages*/
 .animalPic {
-  border-radius: 10%;
+  border-radius: 15px;
   height: 40%;
   width: 40%;
   object-fit: contain;
@@ -120,13 +162,14 @@ section {
 .animalSection:nth-of-type(odd) {
   flex-direction: row-reverse;
 }
-
 .animalHeader {
   display: flex;
   color: midnightblue;
   font-size: 1.75em;
   padding: 0.75em 0;
+  line-height: 1em;
 }
+
 /*footer*/
 footer {
   color: silver;
@@ -162,7 +205,7 @@ footer li:hover {
     padding: 1em;
   }
   .animalPic {
-    border-radius: 10%;
+    border-radius: 15px;
     width: 90%;
   }
   .animalText {
@@ -175,6 +218,10 @@ footer li:hover {
   }
   .animalSection:nth-of-type(odd),
   .animalHeader:nth-last-of-type(3) {
+    flex-direction: column;
+  }
+  .mainContent {
+    display: flex;
     flex-direction: column;
   }
 }

@@ -23,19 +23,22 @@
           <a href="./cat.html"><li>Cats</li></a>
           <a href="./dog.html"><li>Dogs</li></a>
           <a href="./fish.html"><li>Fish</li></a>
-          <a href="./contact.html"><li>Contact Us</li></a>
         </ul>
         <ul class="desktopPageLinks">
           <li><a href="./index.html">Home</a></li>
           <li><a href="./cat.html">Cats</a></li>
           <li><a href="./dog.html">Dogs</a></li>
           <li><a href="./fish.html">Fish</a></li>
-          <li><a href="./contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </header>
     <main class="mainPageContainer">
       <section class="mainContent">
+        <img
+          src="./images/dog_woman Small.png"
+          alt="dog and a woman"
+          class="homePic"
+        />
         Pets are nature's gift to humanity. It has been scientifically proven
         that opening our homes and hearts to a pet increases our longevity and
         improves our overall quality of life as well as the lives of our pets.
@@ -47,20 +50,86 @@
         presentations designed for veterinary, pet shelter, and pet breeding
         professionals.
       </section>
-      <section class="mainContent" id="mainPage">
+      <section class="mainContent">
+        We offer: virtual consultations and presentations, one-on-one
+        consultations concerning individual pets, group presentations regarding
+        general pet care (can be tailored to the needs of the group)<br /><br />We
+        are also happy to help you navigate the adoption process! We will guide
+        you through each step in the process from determining which type of pet
+        is best suited for your family and home environment, to completing the
+        necessary paperwork, to bringing your new loved one home. Please fill
+        out our contact form to request a consultation. We will contact you
+        within 48 hours to schedule a consultation. All fields are required.
+        <form class="contactForm">
+          <label for="personName">Your Name: </label>
+          <input
+            type="text"
+            id="personName"
+            name="personName"
+            placeholder="John Doe"
+            required
+            autofocus
+            autocomplete="given-name"
+          />
+          <label for="cell">Phone Number:</label>
+          <input
+            type="tel"
+            id="cell"
+            name="cell"
+            placeholder="(555)-123-4567"
+            required
+            autocomplete="tel"
+          />
+          <label for="email">Email Address:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="youremail@gmail.com"
+            required
+            autocomplete="email"
+          />
+          <label for="timeZone">Time Zone:</label>
+          <select name="timeZone" id="timeZone" required>
+            <option value="HST">Hawaii Standard Time (HST)</option>
+            <option value="AKST">Alaskan Standard Time (AKST)</option>
+            <option value="PST">Pacific Standard Time (PST)</option>
+            <option value="MST">Mountain Standard Time (MST)</option>
+            <option value="CST">Central Standard Time (CST)</option>
+            <option value="EST">Eastern Standard Time (EST)</option>
+          </select>
+          <label for="petName">Pet's Name:</label>
+          <input
+            type="text"
+            id="petName"
+            name="petName"
+            required
+            placeholder="Sirius"
+          />
+          <label for="petType">Pet's Breed:</label>
+          <input
+            type="text"
+            id="petType"
+            name="petType"
+            required
+            placeholder="Labrador Retriever"
+          />
+          <label for="petAge">Pet's Age:</label>
+          <input
+            type="number"
+            id="petAge"
+            name="petAge"
+            required
+            placeholder="5"
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+      <section>
         Looking for basic pet care advice for the most common type of pets? Need
         additional help determining which type of pet is right for you and your
         family? We will work with you and provide tailored evidence-based pet
         care to ensure lifelong health and wellness of your new companion.
-      </section>
-      <section class="mainContent">
-        We are also happy to help you navigate the adoption process! We will
-        guide you through each step in the process from determining which type
-        of pet is best suited for your family and home environment, to
-        completing the necessary paperwork, to bringing your new loved one home.
-        Please fill out our contact form to request a consultation. We will
-        contact you within 48 hours to schedule a consultation. All fields are
-        required.
       </section>
     </main>
     <footer>
