@@ -19,12 +19,17 @@ export default function Strength() {
 
   const handleRecordChange = (e) => {
     const fieldName = e.target.getAttribute("name");
-    const fieldValue = e.target.value;
+    let fieldValue = e.target.value;
+    //switch format of date from year-month-date to month-date-year
+    if (fieldName === "date") {
+      const year = fieldValue.slice(0, 4);
+      fieldValue = `${fieldValue.slice(5)}-${year}`;
+    }
     const newRecordData = { ...addRecord, [fieldName]: fieldValue };
-
     setAddRecord(newRecordData);
   };
   console.log(records);
+
   const handleRecordSubmit = (e) => {
     e.preventDefault();
 
