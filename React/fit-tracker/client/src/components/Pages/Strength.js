@@ -3,11 +3,14 @@ import Nav from "../NavBar/Nav";
 import data from "../../mock-strength-data.json";
 import { nanoid } from "nanoid";
 import Sidebar from "../NavBar/Sidebar";
+import ReadStrengthRow from "../ReadStrengthRow";
+import EditStrengthRow from "../EditStrengthRow";
 export default function Strength() {
   const today = new Date();
   const [month, setMonth] = useState(
     today.toLocaleString("default", { month: "short" })
   );
+
   const [records, setRecords] = useState(data);
   const [addRecord, setAddRecord] = useState({
     date: "",
@@ -17,6 +20,15 @@ export default function Strength() {
     resistance: "",
   });
 
+  const [editRowID, setEditRowID] = useState(null);
+
+  const handleClickEdit = (record) => {
+    setEditRowID(record.id);
+  };
+
+  const handleDeleteClick = () => {
+    console.log("in the trash");
+  };
   const handleRecordChange = (e) => {
     const fieldName = e.target.getAttribute("name");
     let fieldValue = e.target.value;
@@ -28,7 +40,6 @@ export default function Strength() {
     const newRecordData = { ...addRecord, [fieldName]: fieldValue };
     setAddRecord(newRecordData);
   };
-  console.log(records);
 
   const handleRecordSubmit = (e) => {
     e.preventDefault();
@@ -60,28 +71,34 @@ export default function Strength() {
         </aside>
         <div className="table-container">
           <h1>{month} Strength page</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Exercise</th>
-                <th>Sets</th>
-                <th>Reps</th>
-                <th>Resistance</th>
-              </tr>
-            </thead>
-            <tbody>
-              {records.map((record) => (
+          <form>
+            <table>
+              <thead>
                 <tr>
-                  <td>{record.date}</td>
-                  <td>{record.exercise}</td>
-                  <td>{record.sets}</td>
-                  <td>{record.reps}</td>
-                  <td>{record.resistance}</td>
+                  <th>Date</th>
+                  <th>Exercise</th>
+                  <th>Sets</th>
+                  <th>Reps</th>
+                  <th>Resistance</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {records.map((record) => (
+                  <>
+                    {editRowID === record.id ? (
+                      <EditStrengthRow record={record} />
+                    ) : (
+                      <ReadStrengthRow
+                        record={record}
+                        handleClickEdit={handleClickEdit}
+                        handleDeleteClick={handleDeleteClick}
+                      />
+                    )}
+                  </>
+                ))}
+              </tbody>
+            </table>
+          </form>
           <form onSubmit={handleRecordSubmit}>
             <input
               type="date"
