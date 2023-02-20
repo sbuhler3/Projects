@@ -1,7 +1,11 @@
+#include <string>
+using namespace std;
 #ifndef DEGREE_H
 #define DEGREE_H
 
-enum DegreeProgram {SECURITY, NETWORK, SOFTWARE}
 
+enum class DegreeProgram {SECURITY, NETWORK, SOFTWARE};
+const string DegreeProgramStrings[] = {"SECURITY", "NETWORK", "SOFTWARE"};
 
 #endif
+
