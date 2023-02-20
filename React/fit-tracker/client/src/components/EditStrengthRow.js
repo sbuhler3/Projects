@@ -1,5 +1,6 @@
 import React from "react";
-
+import { BiSave } from "react-icons/bi";
+import { FcCancel } from "react-icons/fc";
 export default function EditStrengthRow({ record }) {
   return (
     <tr>
@@ -46,6 +47,12 @@ export default function EditStrengthRow({ record }) {
           defaultValue={record.resistance}
           placeholder="Enter resistance"
         ></input>
+      </td>
+      <td>
+        <BiSave />
+      </td>
+      <td>
+        <FcCancel />
       </td>
     </tr>
   );
