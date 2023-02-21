@@ -5,7 +5,7 @@ using namespace std;
 
 //DEFAULT CONSTRUCTOR
 Student::Student(){
-    this->studentID=-1;
+    this->studentID="NoID";
     this->firstName="NoName";
     this->lastName="NoName";
     this->email="NoEmail";
@@ -16,23 +16,23 @@ Student::Student(){
     this->degree = DegreeProgram::NETWORK;
 }
 //FULL CONSTRUCTOR
-Student::Student(int studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degree){
-    studentID=studentID;
-    firstName=firstName;
-    lastName=lastName;
-    email=email;
-    age=age;
+Student::Student(string studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degree){
+    this->studentID=studentID;
+    this->firstName=firstName;
+    this->lastName=lastName;
+    this->email=email;
+    this->age=age;
     for (int i=0; i<arraySize; ++i){
-        daysToComplete[i]=daysToComplete[i];
+        this->daysToComplete[i]=daysToComplete[i];
     }
-    degree=degree;
+    this->degree=degree;
  
 }
 //DECONSTRUCTOR
 Student::~Student() {};
 
 //SETTING METHODS
-void Student::SetID(int studentID) {                
+void Student::SetID(string studentID) {                
     this->studentID=studentID;}
 
 void Student::SetFirstName(string firstName) {
@@ -57,7 +57,7 @@ void Student::SetDegree(DegreeProgram degree) {
 }
 
 //GETTING METHODS
-int Student::GetID() const {return studentID;}
+string Student::GetID() const {return studentID;}
 string Student::GetFirstName() const {return firstName;}
 string Student::GetLastName() const {return lastName;}
 string Student::GetEmail() const {return email;}
@@ -65,8 +65,14 @@ int Student::GetAge() const {return age;}
 const int* Student::GetDaysToComplete() {return daysToComplete;}
 DegreeProgram Student::GetDegree() const {return this->degree;}
 //PRINTING METHOD
-void Student::Print() const {
+void Student::Print() {
     cout <<studentID<<'\t'<<firstName<<'\t'<<lastName<<'\t'<<email;
     cout<<'\t'<<age<<'\t';
     cout<<"{"<<daysToComplete[0]<<","<<daysToComplete[1]<<","<<daysToComplete[2]<<"}"<<'\t';
     cout<<DegreeProgramStrings[(int)degree]<<endl;}
+
+int main() {
+    Student s;
+    s.Print();
+    return 0;
+}

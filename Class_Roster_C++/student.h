@@ -12,12 +12,12 @@ class Student {
     //default constructor
     Student();
     //full constructor
-    Student(int studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degree);
+    Student(string studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degree);
     //deconstructor
     ~Student();
 
     //Setting student attributes
-    void SetID(int studentID);                                
+    void SetID(string studentID);                                
     void SetFirstName(string firstName);
     void SetLastName(string lastName);
     void SetEmail(string email);
@@ -26,7 +26,7 @@ class Student {
     void SetDegree(DegreeProgram deg);
 
     //getting student attributes
-    int GetID() const;                                     
+    string GetID() const;                                     
     string GetFirstName() const;
     string GetLastName() const;
     string GetEmail() const;
@@ -35,11 +35,11 @@ class Student {
     DegreeProgram GetDegree() const; 
 
     //printing student attributes
-    void Print() const;                                     
+    void Print();                                     
 
 
     private:
-    int studentID;
+    string studentID;
     string firstName;
     string lastName;
     string email;
