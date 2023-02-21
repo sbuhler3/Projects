@@ -67,13 +67,6 @@ DegreeProgram Student::GetDegree() const {return this->degree;}
 //PRINTING METHOD
 void Student::Print() const {
     cout <<studentID<<'\t'<<firstName<<'\t'<<lastName<<'\t'<<email;
-    cout<<'\t'<<age<<'\t'<<daysToComplete[0]<<daysToComplete[1]<<daysToComplete[2]<<'\t'<<DegreeProgramStrings[(int)degree]<<endl;}
-int main() {
-    Student testStudent;
-    testStudent.Print();
-    testStudent.SetDegree(DegreeProgram::SOFTWARE);
-    testStudent.Print();
-
-   
-    return 0;
-}
+    cout<<'\t'<<age<<'\t';
+    cout<<"{"<<daysToComplete[0]<<","<<daysToComplete[1]<<","<<daysToComplete[2]<<"}"<<'\t';
+    cout<<DegreeProgramStrings[(int)degree]<<endl;}
