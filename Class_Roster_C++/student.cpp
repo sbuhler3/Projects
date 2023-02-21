@@ -17,15 +17,15 @@ Student::Student(){
 }
 //FULL CONSTRUCTOR
 Student::Student(int studentID, string firstName, string lastName, string email, int age, int daysToComplete[], DegreeProgram degree){
-    this-> studentID=studentID;
-    this-> firstName=firstName;
-    this-> lastName=lastName;
-    this-> email=email;
-    this-> age=age;
+    studentID=studentID;
+    firstName=firstName;
+    lastName=lastName;
+    email=email;
+    age=age;
     for (int i=0; i<arraySize; ++i){
-        this->daysToComplete[i]=daysToComplete[i];
+        daysToComplete[i]=daysToComplete[i];
     }
-    this->degree=degree;
+    degree=degree;
  
 }
 //DECONSTRUCTOR
@@ -47,34 +47,31 @@ void Student::SetEmail(string email) {
 void Student::SetAge(int age) {
     this->age=age;}
 
-//void Student::SetDaysToComplete(int age) {
+void Student::SetDaysToComplete(const int daysToComplete[]) {
+    for (int i=0; i<arraySize; ++i){
+        this->daysToComplete[i]=daysToComplete[i];
+    }
+}
+void Student::SetDegree(DegreeProgram degree) {
+    this->degree=degree;
+}
 
 //GETTING METHODS
-int Student::GetID() const {
-    return studentID;
-}
-
-string Student::GetFirstName() const {
-    return firstName;
-}
-
-string Student::GetLastName() const {
-    return lastName;
-}
-
-string Student::GetEmail() const {
-    return email;
-}
-
-int Student::GetAge() const {
-    return age;
-}
-
+int Student::GetID() const {return studentID;}
+string Student::GetFirstName() const {return firstName;}
+string Student::GetLastName() const {return lastName;}
+string Student::GetEmail() const {return email;}
+int Student::GetAge() const {return age;}
+const int* Student::GetDaysToComplete() {return daysToComplete;}
+DegreeProgram Student::GetDegree() const {return this->degree;}
 //PRINTING METHOD
 void Student::Print() const {
-    cout << "TESTING"<<studentID<<firstName<<lastName<<email<<age;}
+    cout <<studentID<<'\t'<<firstName<<'\t'<<lastName<<'\t'<<email;
+    cout<<'\t'<<age<<'\t'<<daysToComplete[0]<<daysToComplete[1]<<daysToComplete[2]<<'\t'<<DegreeProgramStrings[(int)degree]<<endl;}
 int main() {
     Student testStudent;
+    testStudent.Print();
+    testStudent.SetDegree(DegreeProgram::SOFTWARE);
     testStudent.Print();
 
    

@@ -31,7 +31,7 @@ class Student {
     string GetLastName() const;
     string GetEmail() const;
     int GetAge() const;
-    int *GetDaysToComplete() const;
+    const int* GetDaysToComplete() ;
     DegreeProgram GetDegree() const; 
 
     //printing student attributes
