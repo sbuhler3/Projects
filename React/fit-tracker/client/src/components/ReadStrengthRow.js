@@ -26,7 +26,7 @@ export default function ReadStrengthRow({
         <BsFillTrashFill
           size={30}
           onClick={() => {
-            handleDeleteClick();
+            handleDeleteClick(record.id);
           }}
         />
       </td>

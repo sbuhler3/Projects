@@ -118,9 +118,15 @@ export default function Strength() {
   const handleCancelEdit = () => {
     setEditRowID(null);
   };
-  const handleDeleteClick = () => {
-    console.log("in the trash");
+
+  //deleting a row
+  const handleDeleteClick = (recordId) => {
+    const updatedRecords = [...records];
+    const index = records.findIndex((record) => record.id === recordId);
+    updatedRecords.splice(index, 1);
+    setRecords(updatedRecords);
   };
+
   const handleClickMonth = (e) => {
     setMonth(e.currentTarget.innerText);
   };
