@@ -105,7 +105,6 @@ export default function Register() {
           autoFocus
           type="text"
           placeholder="Name"
-          autoComplete
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
           required
@@ -115,7 +114,6 @@ export default function Register() {
           type="email"
           value={email}
           placeholder="Email"
-          autoComplete
           onChange={(e) => setEmail(e.target.value)}
           required
           onBlur={() => setEmailTouched(true)}
@@ -133,7 +131,6 @@ export default function Register() {
           placeholder="Age"
           min={8}
           max={99}
-          autoComplete
           onChange={(e) => setAge(e.target.value)}
           required
           onBlur={() => setAgeTouched(true)}
