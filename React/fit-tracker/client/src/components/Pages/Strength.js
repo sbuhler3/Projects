@@ -124,7 +124,6 @@ export default function Strength() {
   const handleClickMonth = (e) => {
     setMonth(e.currentTarget.innerText);
   };
-  console.log(editRecord);
   return (
     <>
       <header>
@@ -148,28 +147,23 @@ export default function Strength() {
                 </tr>
               </thead>
               <tbody>
-                {records.map(
-                  (record) => (
-                    console.log("Not edited", record),
-                    (
-                      <tr key={record.id}>
-                        {editRowID === record.id ? (
-                          <EditStrengthRow
-                            record={editRecord}
-                            handleEditRecord={handleEditRecord}
-                            handleCancelEdit={handleCancelEdit}
-                          />
-                        ) : (
-                          <ReadStrengthRow
-                            record={record}
-                            handleClickEdit={handleClickEdit}
-                            handleDeleteClick={handleDeleteClick}
-                          />
-                        )}
-                      </tr>
-                    )
-                  )
-                )}
+                {records.map((record) => (
+                  <tr key={record.id}>
+                    {editRowID === record.id ? (
+                      <EditStrengthRow
+                        record={editRecord}
+                        handleEditRecord={handleEditRecord}
+                        handleCancelEdit={handleCancelEdit}
+                      />
+                    ) : (
+                      <ReadStrengthRow
+                        record={record}
+                        handleClickEdit={handleClickEdit}
+                        handleDeleteClick={handleDeleteClick}
+                      />
+                    )}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </form>

@@ -268,6 +268,7 @@ td {
 .table-icon {
   border: none;
   cursor: pointer;
+  width: 5%;
 }
 td input {
   border: none;
