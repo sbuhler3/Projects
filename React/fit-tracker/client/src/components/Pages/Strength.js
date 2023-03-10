@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Nav from "../NavBar/Nav";
 import data from "../../mock-strength-data.json";
 import { nanoid } from "nanoid";
 import Sidebar from "../NavBar/Sidebar";
 import ReadStrengthRow from "../ReadStrengthRow";
 import EditStrengthRow from "../EditStrengthRow";
+import { AuthContext } from "../../context/authContext";
 export default function Strength() {
+  //end users id to set as foreign key in table
+  const { currentUser } = useContext(AuthContext);
+  const { userid } = currentUser;
+  console.log(userid);
   const today = new Date();
   const [month, setMonth] = useState(
     today.toLocaleString("default", { month: "short" })
@@ -18,6 +23,7 @@ export default function Strength() {
     sets: "",
     reps: "",
     resistance: "",
+    user_id: "",
   });
 
   const [editRowID, setEditRowID] = useState(null);
@@ -51,6 +57,7 @@ export default function Strength() {
       sets: addRecord.sets,
       reps: addRecord.reps,
       resistance: addRecord.resistance,
+      user_id: userid,
     };
     const newRecords = [...records, newRecord];
     setRecords(newRecords);
@@ -83,19 +90,24 @@ export default function Strength() {
                 </tr>
               </thead>
               <tbody>
-                {records.map((record) => (
-                  <>
-                    {editRowID === record.id ? (
-                      <EditStrengthRow record={record} />
-                    ) : (
-                      <ReadStrengthRow
-                        record={record}
-                        handleClickEdit={handleClickEdit}
-                        handleDeleteClick={handleDeleteClick}
-                      />
-                    )}
-                  </>
-                ))}
+                {records.map(
+                  (record) => (
+                    console.log(record),
+                    (
+                      <tr key={record.id}>
+                        {editRowID === record.id ? (
+                          <EditStrengthRow record={record} />
+                        ) : (
+                          <ReadStrengthRow
+                            record={record}
+                            handleClickEdit={handleClickEdit}
+                            handleDeleteClick={handleDeleteClick}
+                          />
+                        )}
+                      </tr>
+                    )
+                  )
+                )}
               </tbody>
             </table>
           </form>

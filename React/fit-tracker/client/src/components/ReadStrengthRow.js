@@ -7,7 +7,7 @@ export default function ReadStrengthRow({
   handleDeleteClick,
 }) {
   return (
-    <tr>
+    <>
       <td>{record.date}</td>
       <td>{record.exercise}</td>
       <td>{record.sets}</td>
@@ -27,6 +27,6 @@ export default function ReadStrengthRow({
           }}
         />
       </td>
-    </tr>
+    </>
   );
 }

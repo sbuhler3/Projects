@@ -6,7 +6,6 @@ export default function Home() {
 
   const { userName, age } = currentUser;
   const ageAdjustedHR = 220 - age;
-  console.log(currentUser);
   return (
     <>
       <header>

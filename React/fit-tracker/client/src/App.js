@@ -9,7 +9,6 @@ import Strength from "./components/Pages/Strength";
 import { AuthContext } from "./context/authContext.js";
 function App() {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <div className="App">
       <Routes>

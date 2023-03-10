@@ -3,7 +3,7 @@ import { BiSave } from "react-icons/bi";
 import { FcCancel } from "react-icons/fc";
 export default function EditStrengthRow({ record }) {
   return (
-    <tr>
+    <>
       <td>
         <input
           type="text"
@@ -54,6 +54,6 @@ export default function EditStrengthRow({ record }) {
       <td>
         <FcCancel />
       </td>
-    </tr>
+    </>
   );
 }
