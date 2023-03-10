@@ -13,15 +13,18 @@ export default function ReadStrengthRow({
       <td>{record.sets}</td>
       <td>{record.reps}</td>
       <td>{record.resistance}</td>
-      <td>
+      <td className="table-icon">
         <BsFillPencilFill
+          className="pencil-icon"
+          size={30}
           onClick={() => {
             handleClickEdit(record);
           }}
         />
       </td>
-      <td>
+      <td className="table-icon">
         <BsFillTrashFill
+          size={30}
           onClick={() => {
             handleDeleteClick();
           }}
