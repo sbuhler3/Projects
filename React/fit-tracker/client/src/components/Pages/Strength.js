@@ -121,10 +121,12 @@ export default function Strength() {
 
   //deleting a row
   const handleDeleteClick = (recordId) => {
-    const updatedRecords = [...records];
-    const index = records.findIndex((record) => record.id === recordId);
-    updatedRecords.splice(index, 1);
-    setRecords(updatedRecords);
+    if (window.confirm("Are you sure you want to delete this row?")) {
+      const updatedRecords = [...records];
+      const index = records.findIndex((record) => record.id === recordId);
+      updatedRecords.splice(index, 1);
+      setRecords(updatedRecords);
+    }
   };
 
   const handleClickMonth = (e) => {
