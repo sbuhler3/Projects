@@ -58,12 +58,12 @@ export default function EditStrengthRow({
         ></input>
       </td>
       <td className="table-icon edit-row">
-        <button className="save-icon">
-          <BiSave className="save-icon" type="submit" size={18} />
+        <button className="save-button">
+          <BiSave className="save-icon" type="submit" />
         </button>
       </td>
       <td className="table-icon edit-row">
-        <FcCancel size={18} onClick={handleCancelEdit} />
+        <FcCancel onClick={handleCancelEdit} />
       </td>
     </>
   );

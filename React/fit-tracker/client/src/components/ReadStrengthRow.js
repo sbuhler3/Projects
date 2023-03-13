@@ -1,5 +1,5 @@
 import React from "react";
-import { BsFillPencilFill, BsFillTrashFill, BsTrashFill } from "react-icons/bs";
+import { BsFillPencilFill, BsFillTrashFill } from "react-icons/bs";
 
 export default function ReadStrengthRow({
   record,
@@ -16,7 +16,6 @@ export default function ReadStrengthRow({
       <td className="table-icon">
         <BsFillPencilFill
           className="pencil-icon"
-          size={15}
           onClick={() => {
             handleClickEdit(record);
           }}
@@ -24,7 +23,6 @@ export default function ReadStrengthRow({
       </td>
       <td className="table-icon">
         <BsFillTrashFill
-          size={15}
           onClick={() => {
             handleDeleteClick(record.id);
           }}
