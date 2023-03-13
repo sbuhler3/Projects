@@ -6,16 +6,19 @@ import Sidebar from "../NavBar/Sidebar";
 import ReadStrengthRow from "../ReadStrengthRow";
 import EditStrengthRow from "../EditStrengthRow";
 import { AuthContext } from "../../context/authContext";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 export default function Strength() {
   //end users id to set as foreign key in table
   const { currentUser } = useContext(AuthContext);
   const { userid } = currentUser;
+
+  //setting date so it puts you in the current months page
   const today = new Date();
   const [month, setMonth] = useState(
     today.toLocaleString("default", { month: "short" })
   );
 
-  //code for adding new record to the table
+  const [displayMonths, setDisplayMonths] = useState(false);
 
   const [records, setRecords] = useState(data);
   const [addRecord, setAddRecord] = useState({
@@ -26,6 +29,18 @@ export default function Strength() {
     resistance: "",
     user_id: "",
   });
+
+  const [editRecord, setEditRecord] = useState({
+    date: "",
+    exercise: "",
+    sets: "",
+    reps: "",
+    resistance: "",
+  });
+
+  const [editRowID, setEditRowID] = useState(null);
+
+  //code for adding new record to the table
 
   const handleRecordChange = (e) => {
     const fieldName = e.target.getAttribute("name");
@@ -56,15 +71,6 @@ export default function Strength() {
   };
 
   //code for doing inline edit row
-  const [editRecord, setEditRecord] = useState({
-    date: "",
-    exercise: "",
-    sets: "",
-    reps: "",
-    resistance: "",
-  });
-
-  const [editRowID, setEditRowID] = useState(null);
 
   const handleEditRecord = (e) => {
     const fieldName = e.target.getAttribute("name");
@@ -129,8 +135,16 @@ export default function Strength() {
     }
   };
 
+  //code to change month page
   const handleClickMonth = (e) => {
     setMonth(e.currentTarget.innerText);
+    setDisplayMonths(!displayMonths);
+  };
+
+  //code to display months on small device
+  const handleClickDisplayMonths = (e) => {
+    e.preventDefault();
+    setDisplayMonths(!displayMonths);
   };
   return (
     <>
@@ -138,9 +152,19 @@ export default function Strength() {
         <Nav />
       </header>
       <main className="page">
-        <aside>
-          <Sidebar handleClick={handleClickMonth} />
-        </aside>
+        <button className="button-display" onClick={handleClickDisplayMonths}>
+          Months {displayMonths ? <AiFillCaretUp /> : <AiFillCaretDown />}
+        </button>
+        {displayMonths ? (
+          <aside className="display-months">
+            <Sidebar handleClick={handleClickMonth} />
+          </aside>
+        ) : (
+          <aside className="hide">
+            <Sidebar handleClick={handleClickMonth} />
+          </aside>
+        )}
+
         <div className="table-container">
           <form onSubmit={handleEditSubmit}>
             <table>
@@ -156,7 +180,7 @@ export default function Strength() {
               </thead>
               <tbody>
                 {records.map((record) => (
-                  <tr key={record.id}>
+                  <tr key={record.id} className="table-row">
                     {editRowID === record.id ? (
                       <EditStrengthRow
                         record={editRecord}
@@ -175,8 +199,9 @@ export default function Strength() {
               </tbody>
             </table>
           </form>
-          <form onSubmit={handleRecordSubmit}>
+          <form className="add-row" onSubmit={handleRecordSubmit}>
             <input
+              className="add-item"
               type="date"
               required
               name="date"
@@ -184,6 +209,7 @@ export default function Strength() {
               onChange={handleRecordChange}
             />
             <input
+              className="add-item"
               type="text"
               required
               name="exercise"
@@ -191,24 +217,27 @@ export default function Strength() {
               onChange={handleRecordChange}
             />
             <input
+              className="add-item"
               type="number"
               name="sets"
               placeholder="Enter sets"
               onChange={handleRecordChange}
             />
             <input
+              className="add-item"
               type="number"
               name="reps"
               placeholder="Enter reps"
               onChange={handleRecordChange}
             />
             <input
+              className="add-item"
               type="text"
               name="resistance"
               placeholder="Enter resistance"
               onChange={handleRecordChange}
             />
-            <button>Add row</button>
+            <button className="add-item-button">Add row</button>
           </form>
         </div>
       </main>

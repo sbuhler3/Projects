@@ -8,7 +8,7 @@ export default function EditStrengthRow({
 }) {
   return (
     <>
-      <td>
+      <td className="edit-row">
         <input
           type="date"
           required
@@ -17,7 +17,7 @@ export default function EditStrengthRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td>
+      <td className="edit-row">
         {" "}
         <input
           type="text"
@@ -27,7 +27,7 @@ export default function EditStrengthRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td>
+      <td className="edit-row">
         {" "}
         <input
           type="number"
@@ -37,7 +37,7 @@ export default function EditStrengthRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td>
+      <td className="edit-row">
         {" "}
         <input
           type="number"
@@ -47,7 +47,7 @@ export default function EditStrengthRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td>
+      <td className="edit-row">
         {" "}
         <input
           type="text"
@@ -57,13 +57,13 @@ export default function EditStrengthRow({
           placeholder="Enter resistance"
         ></input>
       </td>
-      <td className="table-icon">
+      <td className="table-icon edit-row">
         <button className="save-icon">
-          <BiSave className="save-icon" type="submit" size={30} />
+          <BiSave className="save-icon" type="submit" size={18} />
         </button>
       </td>
-      <td className="table-icon">
-        <FcCancel size={30} onClick={handleCancelEdit} />
+      <td className="table-icon edit-row">
+        <FcCancel size={18} onClick={handleCancelEdit} />
       </td>
     </>
   );

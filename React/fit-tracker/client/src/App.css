@@ -162,13 +162,14 @@ a {
 }
 /*Sidebar*/
 .months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   list-style: none;
-  margin-right: 10px;
-  padding: 5px;
-  height: 100%;
-  min-height: 100vh;
-  width: auto;
-  font-size: 38px;
+  margin: 0;
+  padding: 0;
+  gap: 5px;
+  width: 100%;
+  font-size: 24px;
   font-weight: 800;
   cursor: pointer;
   color: whitesmoke;
@@ -239,45 +240,99 @@ a {
 }
 /*Strengh and Cardio page*/
 .page {
-  display: flex;
   width: 100%;
 }
+.button-display {
+  display: flex;
+  padding: 1em;
+  margin-top: 0.75em;
+  border: none;
+  background-color: forestgreen;
+  opacity: 90%;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 0.3em;
+  cursor: pointer;
+  align-items: center;
+  box-shadow: 3px 3px 8px gray;
+}
 .table-container {
-  padding-left: 20px;
-  width: 90vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 .table-heading {
   text-align: center;
   padding: 0.75em;
-  font-size: 30px;
+  font-size: 2em;
   font-weight: 700;
 }
 table {
   width: 100%;
   display: table;
   border-collapse: collapse;
+  font-size: 0.75em;
+}
+th {
+  border: solid #7fb767 0.1em;
+}
+.edit-row {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.edit-row input {
+  font-size: 0.8em;
+  max-width: 4em;
+  margin: 0.1em;
+}
+.table-data {
+  vertical-align: top;
 }
 th,
 td {
-  border: solid #7fb767 0.1em;
-  padding: 10px;
-  width: auto;
+  padding: 0.63em;
+}
+tr:nth-child(odd) .table-data {
+  background-color: #7fb767;
+  opacity: 80%;
 }
 .table-icon {
   border: none;
   cursor: pointer;
   width: 5%;
 }
-td input {
-  border: none;
-  font-size: large;
-}
 .pencil-icon {
-  padding-left: 10px;
+  padding-left: 0.5em;
 }
 .save-icon {
   border: none;
   background-color: white;
+}
+.add-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 80%;
+  padding: 0.5em;
+  gap: 0.3em;
+  margin: auto;
+}
+.add-item-button {
+  grid-column: 1 / 3;
+  width: 50%;
+  padding: 0.4em;
+  margin: auto;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  background-color: forestgreen;
+  opacity: 90%;
+  color: white;
+  border-radius: 0.3em;
+  box-shadow: 3px 3px 8px gray;
+}
+.add-item {
+  padding: 0.3em;
 }

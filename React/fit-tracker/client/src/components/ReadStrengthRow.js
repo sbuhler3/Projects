@@ -8,15 +8,15 @@ export default function ReadStrengthRow({
 }) {
   return (
     <>
-      <td>{record.date}</td>
-      <td>{record.exercise}</td>
-      <td>{record.sets}</td>
-      <td>{record.reps}</td>
-      <td>{record.resistance}</td>
+      <td className="table-data">{record.date}</td>
+      <td className="table-data">{record.exercise}</td>
+      <td className="table-data">{record.sets}</td>
+      <td className="table-data">{record.reps}</td>
+      <td className="table-data">{record.resistance}</td>
       <td className="table-icon">
         <BsFillPencilFill
           className="pencil-icon"
-          size={30}
+          size={15}
           onClick={() => {
             handleClickEdit(record);
           }}
@@ -24,7 +24,7 @@ export default function ReadStrengthRow({
       </td>
       <td className="table-icon">
         <BsFillTrashFill
-          size={30}
+          size={15}
           onClick={() => {
             handleDeleteClick(record.id);
           }}
