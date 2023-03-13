@@ -141,7 +141,7 @@ export default function Strength() {
     setDisplayMonths(!displayMonths);
   };
 
-  //code to display months on small device
+  //code to display months
   const handleClickDisplayMonths = (e) => {
     e.preventDefault();
     setDisplayMonths(!displayMonths);

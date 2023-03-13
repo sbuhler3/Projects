@@ -311,6 +311,7 @@ th {
   opacity: 90%;
   color: white;
   border-radius: 0.3em;
+  cursor: pointer;
   box-shadow: 3px 3px 8px gray;
 }
 .add-row {
@@ -377,4 +378,23 @@ th {
   }
 }
 @media screen and (min-width: 992px) {
+  table {
+    font-size: 1em;
+  }
+  .add-item {
+    padding: 1em;
+    font-size: 1em;
+  }
+  .edit-row input {
+    font-size: 1em;
+    max-width: fit-content;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .add-row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .add-item-button {
+    grid-column: 1/6;
+  }
 }
