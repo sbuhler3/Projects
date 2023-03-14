@@ -42,22 +42,10 @@ export default function Strength() {
 
   const [editRowID, setEditRowID] = useState(null);
 
-  //start pulling data from mysql
-  async function loadData() {
-    const result = await axios.get("http://localhost:3001/strength");
-    //get rid of times on the date
-    const formatData = result.data.data.map((prev) => {
-      return { ...prev, date: prev.date.slice(0, 10) };
-    });
-    //
-    setRecords(formatData);
-  }
-  useEffect(() => {
-    loadData();
-  }, [records]);
   //code for adding new record to the table
 
   const handleRecordChange = (e, record) => {
+    e.preventDefault();
     const fieldName = e.target.getAttribute("name");
     let fieldValue = e.target.value;
     //switch format of date from year-month-date to month-date-year
@@ -69,20 +57,25 @@ export default function Strength() {
     setAddRecord(newRecordData);
   };
 
-  const handleRecordSubmit = (e) => {
+  const handleRecordSubmit = async (e) => {
     e.preventDefault();
 
-    const newRecord = {
-      id: nanoid(),
-      date: addRecord.date,
-      exercise: addRecord.exercise,
-      sets: addRecord.sets,
-      reps: addRecord.reps,
-      resistance: addRecord.resistance,
-      user_id: userid,
-    };
-    const newRecords = [...records, newRecord];
-    setRecords(newRecords);
+    try {
+      await axios.post("http://localhost:3001/strength", {
+        id: nanoid(),
+        date: addRecord.date,
+        month: parseInt(addRecord.date.slice(5, 7)),
+        exercise: addRecord.exercise,
+        sets: addRecord.sets,
+        reps: addRecord.reps,
+        resistance: addRecord.resistance,
+        user_id: userid,
+      });
+      loadData();
+    } catch (err) {
+      alert("Added record failed");
+    }
+    //setRecords(newRecords);
     setAddRecord({
       id: "",
       date: "",
@@ -113,27 +106,36 @@ export default function Strength() {
     const editValues = {
       id: record.id,
       date: record.date,
+      month: record.month,
       exercise: record.exercise,
       sets: record.sets,
       reps: record.reps,
       resistance: record.resistance,
-      user_id: record.userid,
+      user_id: userid,
     };
     setEditRecord(editValues);
   };
 
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-
     const editedRecord = {
-      id: editRowID,
+      id: editRecord.id,
       date: editRecord.date,
+      month: editRecord.month,
       exercise: editRecord.exercise,
       sets: editRecord.sets,
       reps: editRecord.reps,
       resistance: editRecord.resistance,
-      user_id: userid,
+      user_id: editRecord.user_id,
     };
+    try {
+      await axios.put(
+        `http://localhost:3001/strength/update/${editedRecord.id}`,
+        editedRecord
+      );
+    } catch (err) {
+      alert("Updating exercise failed, try again.");
+    }
 
     const newRecord = [...records];
 
@@ -150,12 +152,14 @@ export default function Strength() {
   };
 
   //deleting a row
-  const handleDeleteClick = (recordId) => {
+  const handleDeleteClick = async (recordId) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
-      const updatedRecords = [...records];
-      const index = records.findIndex((record) => record.id === recordId);
-      updatedRecords.splice(index, 1);
-      setRecords(updatedRecords);
+      try {
+        await axios.delete(`http://localhost:3001/strength/delete/${recordId}`);
+        loadData();
+      } catch (err) {
+        alert("Error deleting exercise.");
+      }
     }
   };
 
@@ -188,6 +192,24 @@ export default function Strength() {
     e.preventDefault();
     setDisplayMonths(!displayMonths);
   };
+
+  //start pulling data from mysql
+  async function loadData() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  useEffect(() => {
+    loadData();
+  }, [month]);
+  console.log(records);
   return (
     <>
       <header>
@@ -271,6 +293,7 @@ export default function Strength() {
             />
             <input
               className="add-item"
+              required
               type="number"
               name="sets"
               value={addRecord.sets}
@@ -279,6 +302,7 @@ export default function Strength() {
             />
             <input
               className="add-item"
+              required
               type="number"
               name="reps"
               value={addRecord.reps}
@@ -287,6 +311,7 @@ export default function Strength() {
             />
             <input
               className="add-item"
+              required
               type="text"
               name="resistance"
               value={addRecord.resistance}
