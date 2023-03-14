@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "../NavBar/Nav";
 import data from "../../mock-strength-data.json";
 import { nanoid } from "nanoid";
@@ -14,14 +14,16 @@ export default function Strength() {
 
   //setting date so it puts you in the current months page
   const today = new Date();
-  const [month, setMonth] = useState(
-    today.toLocaleString("default", { month: "short" })
-  );
+  const [month, setMonth] = useState({
+    name: today.toLocaleString("default", { month: "short" }),
+    monthNum: today.getMonth() + 1,
+  });
 
   const [displayMonths, setDisplayMonths] = useState(false);
 
   const [records, setRecords] = useState(data);
   const [addRecord, setAddRecord] = useState({
+    id: "",
     date: "",
     exercise: "",
     sets: "",
@@ -42,14 +44,14 @@ export default function Strength() {
 
   //code for adding new record to the table
 
-  const handleRecordChange = (e) => {
+  const handleRecordChange = (e, record) => {
     const fieldName = e.target.getAttribute("name");
     let fieldValue = e.target.value;
     //switch format of date from year-month-date to month-date-year
-    if (fieldName === "date") {
-      const year = fieldValue.slice(0, 4);
-      fieldValue = `${fieldValue.slice(5)}-${year}`;
-    }
+    //if (fieldName === "date") {
+    //const year = fieldValue.slice(0, 4);
+    //fieldValue = `${fieldValue.slice(5)}-${year}`;
+    //}
     const newRecordData = { ...addRecord, [fieldName]: fieldValue };
     setAddRecord(newRecordData);
   };
@@ -68,6 +70,15 @@ export default function Strength() {
     };
     const newRecords = [...records, newRecord];
     setRecords(newRecords);
+    setAddRecord({
+      id: "",
+      date: "",
+      exercise: "",
+      sets: "",
+      reps: "",
+      resistance: "",
+      user_id: "",
+    });
   };
 
   //code for doing inline edit row
@@ -76,10 +87,10 @@ export default function Strength() {
     const fieldName = e.target.getAttribute("name");
     let fieldValue = e.target.value;
     //switch format of date from year-month-date to month-date-year
-    if (fieldName === "date") {
-      const year = fieldValue.slice(0, 4);
-      fieldValue = `${fieldValue.slice(5)}-${year}`;
-    }
+    // if (fieldName === "date") {
+    // const year = fieldValue.slice(0, 4);
+    //fieldValue = `${fieldValue.slice(5)}-${year}`;
+    //}
     setEditRecord({ ...editRecord, [fieldName]: fieldValue });
   };
 
@@ -137,7 +148,25 @@ export default function Strength() {
 
   //code to change month page
   const handleClickMonth = (e) => {
-    setMonth(e.currentTarget.innerText);
+    // setting number for lookup in table
+    const monthDict = {
+      Jan: 1,
+      Feb: 2,
+      Mar: 3,
+      Apr: 4,
+      May: 5,
+      Jun: 6,
+      Jul: 7,
+      Aug: 8,
+      Sep: 9,
+      Oct: 10,
+      Nov: 11,
+      Dec: 12,
+    };
+    setMonth({
+      name: e.currentTarget.innerText,
+      monthNum: monthDict[e.currentTarget.innerText],
+    });
     setDisplayMonths(!displayMonths);
   };
 
@@ -164,47 +193,57 @@ export default function Strength() {
             <Sidebar handleClick={handleClickMonth} />
           </aside>
         )}
-
         <div className="table-container">
-          <form onSubmit={handleEditSubmit}>
-            <table>
-              <caption className="table-heading">{month} Strength Page</caption>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Exercise</th>
-                  <th>Sets</th>
-                  <th>Reps</th>
-                  <th>Resistance</th>
-                </tr>
-              </thead>
-              <tbody>
-                {records.map((record) => (
-                  <tr key={record.id} className="table-row">
-                    {editRowID === record.id ? (
-                      <EditStrengthRow
-                        record={editRecord}
-                        handleEditRecord={handleEditRecord}
-                        handleCancelEdit={handleCancelEdit}
-                      />
-                    ) : (
-                      <ReadStrengthRow
-                        record={record}
-                        handleClickEdit={handleClickEdit}
-                        handleDeleteClick={handleDeleteClick}
-                      />
-                    )}
+          {/*Display no records if array is empty*/}
+          {records.length > 0 ? (
+            <form onSubmit={handleEditSubmit}>
+              <table>
+                <caption className="table-heading">
+                  {month.name} Strength Page
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Exercise</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                    <th>Resistance</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </form>
+                </thead>
+                <tbody>
+                  {records.map((record) => (
+                    <tr key={record.id} className="table-row">
+                      {editRowID === record.id ? (
+                        <EditStrengthRow
+                          record={editRecord}
+                          handleEditRecord={handleEditRecord}
+                          handleCancelEdit={handleCancelEdit}
+                        />
+                      ) : (
+                        <ReadStrengthRow
+                          record={record}
+                          handleClickEdit={handleClickEdit}
+                          handleDeleteClick={handleDeleteClick}
+                        />
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </form>
+          ) : (
+            <h2 className="notExist">
+              No records exist for this month. Add your first workout!
+            </h2>
+          )}
+
           <form className="add-row" onSubmit={handleRecordSubmit}>
             <input
               className="add-item"
               type="date"
               required
               name="date"
+              value={addRecord.date}
               placeholder="Enter a date"
               onChange={handleRecordChange}
             />
@@ -213,6 +252,7 @@ export default function Strength() {
               type="text"
               required
               name="exercise"
+              value={addRecord.exercise}
               placeholder="Enter a exercise"
               onChange={handleRecordChange}
             />
@@ -220,6 +260,7 @@ export default function Strength() {
               className="add-item"
               type="number"
               name="sets"
+              value={addRecord.sets}
               placeholder="Enter sets"
               onChange={handleRecordChange}
             />
@@ -227,6 +268,7 @@ export default function Strength() {
               className="add-item"
               type="number"
               name="reps"
+              value={addRecord.reps}
               placeholder="Enter reps"
               onChange={handleRecordChange}
             />
@@ -234,6 +276,7 @@ export default function Strength() {
               className="add-item"
               type="text"
               name="resistance"
+              value={addRecord.resistance}
               placeholder="Enter resistance"
               onChange={handleRecordChange}
             />

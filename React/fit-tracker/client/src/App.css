@@ -398,3 +398,6 @@ th {
     grid-column: 1/6;
   }
 }
+.notExist {
+  margin: auto;
+}
