@@ -56,6 +56,105 @@ app.post("/login", (req, res) => {
   });
 });
 
+// START BACKEND FOR STRENGTH
+
+app.post("/strength", (req, res) => {
+  const id = req.body.id;
+  const date = req.body.date;
+  const month = req.body.month;
+  const exercise = req.body.exercise;
+  const sets = req.body.sets;
+  const reps = req.body.reps;
+  const resistance = req.body.resistance;
+  const user_id = req.body.user_id;
+
+  const q =
+    "INSERT INTO strength (id, date, month, exercise, sets, reps, resistance, user_id) VALUES (?,?,?,?,?,?,?,?)";
+  db.query(
+    q,
+    [id, date, month, exercise, sets, reps, resistance, user_id],
+    (err, data) => {
+      if (err) return res.json(err);
+      else {
+        res.status(200).json({
+          id,
+          date,
+          month,
+          exercise,
+          sets,
+          reps,
+          resistance,
+          user_id,
+        });
+      }
+    }
+  );
+});
+
+//get records
+app.get("/strength", (req, res) => {
+  const q = "SELECT * FROM strength";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+
+//get records based on month and userID
+app.get("/strength/:month/:id", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id}`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+
+//update records
+app.put("/strength/update/:id", (req, res) => {
+  let q = `UPDATE strength SET 
+  date = '${req.body.date}',
+  exercise = '${req.body.exercise}',
+  sets = ${req.body.sets},
+  reps = ${req.body.reps},
+  resistance = '${req.body.resistance}'
+  WHERE id = '${req.params.id}'`;
+
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully updated record");
+    }
+  });
+});
+
+//delete records
+app.delete("/strength/delete/:id", (req, res) => {
+  let q = `DELETE FROM strength WHERE id = '${req.params.id}'`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully deleted record");
+    }
+  });
+});
+
+app.delete("/strength/delete", (req, res) => {
+  let q = `DELETE FROM strength`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully deleted all records");
+    }
+  });
+});
+
+//END STRENGTH PAGE BACKEND
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 });

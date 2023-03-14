@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Nav from "../NavBar/Nav";
-import data from "../../mock-strength-data.json";
 import { nanoid } from "nanoid";
 import Sidebar from "../NavBar/Sidebar";
 import ReadStrengthRow from "../ReadStrengthRow";
 import EditStrengthRow from "../EditStrengthRow";
 import { AuthContext } from "../../context/authContext";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import axios from "axios";
 export default function Strength() {
   //end users id to set as foreign key in table
   const { currentUser } = useContext(AuthContext);
@@ -21,7 +21,7 @@ export default function Strength() {
 
   const [displayMonths, setDisplayMonths] = useState(false);
 
-  const [records, setRecords] = useState(data);
+  const [records, setRecords] = useState([]);
   const [addRecord, setAddRecord] = useState({
     id: "",
     date: "",
@@ -42,6 +42,19 @@ export default function Strength() {
 
   const [editRowID, setEditRowID] = useState(null);
 
+  //start pulling data from mysql
+  async function loadData() {
+    const result = await axios.get("http://localhost:3001/strength");
+    //get rid of times on the date
+    const formatData = result.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+  useEffect(() => {
+    loadData();
+  }, [records]);
   //code for adding new record to the table
 
   const handleRecordChange = (e, record) => {
