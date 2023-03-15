@@ -209,7 +209,66 @@ app.get("/cardio/:month/:id", (req, res) => {
     }
   });
 });
-
+//order by date desc
+app.get("/cardio/:month/:id/desc", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY date DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by exercise asc
+app.get("/cardio/:month/:id/exercise-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY exercise`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by exercise desc
+app.get("/cardio/:month/:id/exercise-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY exercise DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by time asc
+app.get("/cardio/:month/:id/time-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY time`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by time desc
+app.get("/cardio/:month/:id/time-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY time DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
 //update records
 app.put("/cardio/update/:id", (req, res) => {
   let q = `UPDATE cardio SET 
@@ -238,7 +297,7 @@ app.delete("/cardio/delete/:id", (req, res) => {
 });
 
 app.delete("/cardio/delete", (req, res) => {
-  let q = `DELETE FROM strength`;
+  let q = `DELETE FROM cardio`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     else {

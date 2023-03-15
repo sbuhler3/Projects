@@ -30,7 +30,7 @@ export default function EditCardioRow({
       <td className="edit-row cardio-edit">
         {" "}
         <input
-          type="text"
+          type="number"
           required
           name="time"
           defaultValue={record.time}

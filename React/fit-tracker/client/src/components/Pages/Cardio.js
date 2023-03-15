@@ -20,7 +20,11 @@ export default function Cardio() {
   });
 
   const [displayMonths, setDisplayMonths] = useState(false);
-
+  //for ordering columns
+  const [orderDate, setOrderDate] = useState(true);
+  const [orderExercise, setOrderExcercise] = useState(true);
+  const [orderTime, setOrderTime] = useState(true);
+  //end of ordering columns state
   const [records, setRecords] = useState([]);
   const [addRecord, setAddRecord] = useState({
     id: "",
@@ -194,11 +198,87 @@ export default function Cardio() {
     setRecords(formatData);
   }
 
+  //SORTING FUNCTIONS
+  async function orderByDate() {
+    const res = await axios.get(
+      `http://localhost:3001/cardio/${month.monthNum}/${userid}/desc`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByExerciseAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/cardio/${month.monthNum}/${userid}/exercise-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByExerciseDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/cardio/${month.monthNum}/${userid}/exercise-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByTimeAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/cardio/${month.monthNum}/${userid}/time-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByTimeDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/cardio/${month.monthNum}/${userid}/time-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  //Handling Clicks for sorting columns
+  const handleChangeOrderDate = async () => {
+    orderDate ? loadData() : orderByDate();
+    setOrderDate(!orderDate);
+  };
+
+  const handleChangeOrderExercise = async () => {
+    orderExercise ? orderByExerciseAsc() : orderByExerciseDesc();
+    setOrderExcercise(!orderExercise);
+  };
+
+  const handleChangeOrderTime = async () => {
+    orderTime ? orderByTimeAsc() : orderByTimeDesc();
+    setOrderTime(!orderTime);
+  };
+
   useEffect(() => {
     loadData();
   }, [month]);
-  console.log(records);
-  console.log(editRecord);
+
   return (
     <>
       <header>
@@ -227,9 +307,24 @@ export default function Cardio() {
                 </caption>
                 <thead>
                   <tr>
-                    <th>Date</th>
-                    <th>Exercise</th>
-                    <th>Time</th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderDate}
+                    >
+                      Date
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderExercise}
+                    >
+                      Exercise
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderTime}
+                    >
+                      Time(Mins)
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -281,10 +376,10 @@ export default function Cardio() {
             <input
               className="add-item cardio-item"
               required
-              type="text"
+              type="number"
               name="time"
               value={addRecord.time}
-              placeholder="Enter time"
+              placeholder="Enter time(mins)"
               onChange={handleRecordChange}
             />
             <button className="add-item-button">Add row</button>
