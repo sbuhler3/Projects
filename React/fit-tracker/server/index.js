@@ -106,7 +106,7 @@ app.get("/strength", (req, res) => {
 app.get("/strength/:month/:id", (req, res) => {
   let month = req.params.month;
   let id = req.params.id;
-  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id}`;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY date`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     else {
@@ -201,7 +201,7 @@ app.get("/cardio", (req, res) => {
 app.get("/cardio/:month/:id", (req, res) => {
   let month = req.params.month;
   let id = req.params.id;
-  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id}`;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id} ORDER BY date`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     else {
