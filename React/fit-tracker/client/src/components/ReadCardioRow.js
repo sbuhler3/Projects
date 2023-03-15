@@ -11,7 +11,7 @@ export default function ReadCardioRow({
       <td className="table-data">{record.date}</td>
       <td className="table-data">{record.exercise}</td>
       <td className="table-data">{record.time}</td>
-      <td className="table-icon">
+      <td className="table-icon cardio-icon">
         <BsFillPencilFill
           className="pencil-icon"
           onClick={() => {
@@ -19,7 +19,7 @@ export default function ReadCardioRow({
           }}
         />
       </td>
-      <td className="table-icon">
+      <td className="table-icon cardio-icon">
         <BsFillTrashFill
           onClick={() => {
             handleDeleteClick(record.id);

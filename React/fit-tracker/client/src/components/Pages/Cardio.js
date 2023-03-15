@@ -221,7 +221,7 @@ export default function Cardio() {
           {/*Display no records if array is empty*/}
           {records.length > 0 ? (
             <form onSubmit={handleEditSubmit}>
-              <table>
+              <table className="cardio-table">
                 <caption className="table-heading">
                   {month.name} Cardio Page
                 </caption>
@@ -259,9 +259,9 @@ export default function Cardio() {
             </h2>
           )}
 
-          <form className="add-row" onSubmit={handleRecordSubmit}>
+          <form className="add-row cardio-row" onSubmit={handleRecordSubmit}>
             <input
-              className="add-item"
+              className="add-item cardio-item"
               type="date"
               required
               name="date"
@@ -270,7 +270,7 @@ export default function Cardio() {
               onChange={handleRecordChange}
             />
             <input
-              className="add-item"
+              className="add-item cardio-item"
               type="text"
               required
               name="exercise"
@@ -279,7 +279,7 @@ export default function Cardio() {
               onChange={handleRecordChange}
             />
             <input
-              className="add-item"
+              className="add-item cardio-item"
               required
               type="text"
               name="time"

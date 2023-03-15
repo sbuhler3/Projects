@@ -155,6 +155,7 @@ a {
     box-shadow: 0 5px 5px gray;
     border-top: 2px solid white;
     opacity: 95%;
+    z-index: 1;
   }
 }
 .icon {
@@ -278,6 +279,7 @@ table {
   display: table;
   border-collapse: collapse;
   font-size: 1em;
+  font-weight: 600;
 }
 th {
   border: solid #7fb767 0.1em;
@@ -346,9 +348,11 @@ th {
   .add-item-button {
     grid-column: 1/3;
   }
-  .table-icon,
-  .save-icon {
+  .table-icon {
     font-size: 1em;
+  }
+  .save-icon {
+    font-size: 1.2em;
   }
   table {
     font-size: 0.75em;
@@ -359,10 +363,13 @@ th {
     font-size: 1.5em;
   }
   .save-icon {
-    font-size: 2em;
+    font-size: 1.75em;
   }
   .add-row {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .add-item {
+    padding: 0.6em;
   }
   .add-item-button {
     grid-column: 1/4;
@@ -400,4 +407,40 @@ th {
 }
 .notExist {
   margin: auto;
+}
+/*Cardio page sizing*/
+.cardio-table {
+  font-size: 1em;
+  font-weight: 600;
+}
+.cardio-icon {
+  font-size: 1.2em;
+}
+.cardio-edit input {
+  max-width: 6em;
+  font-size: 0.9em;
+}
+@media screen and (min-width: 576px) {
+  .cardio-item {
+    padding: 0.8em;
+  }
+}
+@media screen and (min-width: 776px) {
+  .cardio-edit input {
+    max-width: fit-content;
+    font-size: 1.2em;
+  }
+  .cardio-icon {
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 992px) {
+  .cardio-table {
+    font-size: 1.2em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .cardio-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

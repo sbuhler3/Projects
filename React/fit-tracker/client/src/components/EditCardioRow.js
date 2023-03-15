@@ -8,7 +8,7 @@ export default function EditCardioRow({
 }) {
   return (
     <>
-      <td className="edit-row">
+      <td className="edit-row cardio-edit">
         <input
           type="date"
           required
@@ -17,7 +17,7 @@ export default function EditCardioRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td className="edit-row">
+      <td className="edit-row cardio-edit">
         {" "}
         <input
           type="text"
@@ -27,7 +27,7 @@ export default function EditCardioRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td className="edit-row">
+      <td className="edit-row cardio-edit">
         {" "}
         <input
           type="text"
@@ -37,12 +37,12 @@ export default function EditCardioRow({
           onChange={handleEditRecord}
         ></input>
       </td>
-      <td className="table-icon edit-row">
+      <td className="table-icon edit-row cardio-icon">
         <button className="save-button">
           <BiSave className="save-icon" type="submit" />
         </button>
       </td>
-      <td className="table-icon edit-row">
+      <td className="table-icon edit-row cardio-icon">
         <FcCancel onClick={handleCancelEdit} />
       </td>
     </>
