@@ -209,7 +209,6 @@ export default function Strength() {
   useEffect(() => {
     loadData();
   }, [month]);
-  console.log(records);
   return (
     <>
       <header>

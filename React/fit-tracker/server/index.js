@@ -158,3 +158,93 @@ app.delete("/strength/delete", (req, res) => {
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 });
+
+// START BACKEND FOR CARDIO
+
+app.post("/cardio", (req, res) => {
+  const id = req.body.id;
+  const date = req.body.date;
+  const month = req.body.month;
+  const exercise = req.body.exercise;
+  const time = req.body.time;
+  const user_id = req.body.user_id;
+
+  const q =
+    "INSERT INTO cardio (id, date, month, exercise, time, user_id) VALUES (?,?,?,?,?,?)";
+  db.query(q, [id, date, month, exercise, time, user_id], (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json({
+        id,
+        date,
+        month,
+        exercise,
+        time,
+        user_id,
+      });
+    }
+  });
+});
+
+//get records
+app.get("/cardio", (req, res) => {
+  const q = "SELECT * FROM cardio";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+
+//get records based on month and userID
+app.get("/cardio/:month/:id", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM cardio WHERE month = ${month} AND user_id = ${id}`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+
+//update records
+app.put("/cardio/update/:id", (req, res) => {
+  let q = `UPDATE cardio SET 
+  date = '${req.body.date}',
+  exercise = '${req.body.exercise}',
+  time = '${req.body.time}'
+  WHERE id = '${req.params.id}'`;
+
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully updated record");
+    }
+  });
+});
+
+//delete records
+app.delete("/cardio/delete/:id", (req, res) => {
+  let q = `DELETE FROM cardio WHERE id = '${req.params.id}'`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully deleted record");
+    }
+  });
+});
+
+app.delete("/cardio/delete", (req, res) => {
+  let q = `DELETE FROM strength`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).json("Successfully deleted all records");
+    }
+  });
+});
+
+//END CARDIO PAGE BACKEND
