@@ -114,7 +114,114 @@ app.get("/strength/:month/:id", (req, res) => {
     }
   });
 });
-
+//order by date desc
+app.get("/strength/:month/:id/desc", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY date DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by exercise asc
+app.get("/strength/:month/:id/exercise-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY exercise`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by exercise desc
+app.get("/strength/:month/:id/exercise-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY exercise DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by sets asc
+app.get("/strength/:month/:id/sets-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY sets`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by sets desc
+app.get("/strength/:month/:id/sets-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY sets DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by reps asc
+app.get("/strength/:month/:id/reps-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY reps`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by reps desc
+app.get("/strength/:month/:id/reps-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY reps DESC`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by resistance asc
+app.get("/strength/:month/:id/res-a", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY resistance +0`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
+//order by resistance asc
+app.get("/strength/:month/:id/res-d", (req, res) => {
+  let month = req.params.month;
+  let id = req.params.id;
+  let q = `SELECT * FROM strength WHERE month = ${month} AND user_id = ${id} ORDER BY resistance +0 desc`;
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    else {
+      res.status(200).send({ data });
+    }
+  });
+});
 //update records
 app.put("/strength/update/:id", (req, res) => {
   let q = `UPDATE strength SET 

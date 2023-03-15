@@ -6,6 +6,7 @@ import ReadCardioRow from "../ReadCardioRow";
 import EditCardioRow from "../EditCardioRow";
 import { AuthContext } from "../../context/authContext";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { BsArrowDownUp } from "react-icons/bs";
 import axios from "axios";
 export default function Cardio() {
   //end users id to set as foreign key in table
@@ -311,19 +312,20 @@ export default function Cardio() {
                       className="heading-click"
                       onClick={handleChangeOrderDate}
                     >
-                      Date
+                      Date <br /> <BsArrowDownUp />
                     </th>
                     <th
                       className="heading-click"
                       onClick={handleChangeOrderExercise}
                     >
-                      Exercise
+                      Exercise <br /> <BsArrowDownUp />
                     </th>
                     <th
                       className="heading-click"
                       onClick={handleChangeOrderTime}
                     >
-                      Time(Mins)
+                      Time(Mins) <br />
+                      <BsArrowDownUp />
                     </th>
                   </tr>
                 </thead>

@@ -6,6 +6,7 @@ import ReadStrengthRow from "../ReadStrengthRow";
 import EditStrengthRow from "../EditStrengthRow";
 import { AuthContext } from "../../context/authContext";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { BsArrowDownUp } from "react-icons/bs";
 import axios from "axios";
 export default function Strength() {
   //end users id to set as foreign key in table
@@ -20,7 +21,13 @@ export default function Strength() {
   });
 
   const [displayMonths, setDisplayMonths] = useState(false);
-
+  //for ordering columns
+  const [orderDate, setOrderDate] = useState(true);
+  const [orderExercise, setOrderExcercise] = useState(true);
+  const [orderSets, setOrderSets] = useState(true);
+  const [orderReps, setOrderReps] = useState(true);
+  const [orderRes, setOrderRes] = useState(true);
+  //end of ordering columns state
   const [records, setRecords] = useState([]);
   const [addRecord, setAddRecord] = useState({
     id: "",
@@ -206,6 +213,140 @@ export default function Strength() {
     setRecords(formatData);
   }
 
+  //SORTING FUNCTIONS
+  async function orderByDate() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/desc`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByExerciseAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/exercise-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByExerciseDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/exercise-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderBySetsAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/sets-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderBySetsDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/sets-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByRepsAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/reps-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByRepsDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/reps-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByResAsc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/res-a`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+
+  async function orderByResDesc() {
+    const res = await axios.get(
+      `http://localhost:3001/strength/${month.monthNum}/${userid}/res-d`
+    );
+    //get rid of times on the date
+    const formatData = res.data.data.map((prev) => {
+      return { ...prev, date: prev.date.slice(0, 10) };
+    });
+    //
+    setRecords(formatData);
+  }
+  //Handling Clicks for sorting columns
+  const handleChangeOrderDate = async () => {
+    orderDate ? loadData() : orderByDate();
+    setOrderDate(!orderDate);
+  };
+
+  const handleChangeOrderExercise = async () => {
+    orderExercise ? orderByExerciseAsc() : orderByExerciseDesc();
+    setOrderExcercise(!orderExercise);
+  };
+
+  const handleChangeOrderSets = async () => {
+    orderSets ? orderBySetsAsc() : orderBySetsDesc();
+    setOrderSets(!orderSets);
+  };
+
+  const handleChangeOrderReps = async () => {
+    orderReps ? orderByRepsAsc() : orderByRepsDesc();
+    setOrderReps(!orderReps);
+  };
+
+  const handleChangeOrderRes = async () => {
+    orderRes ? orderByResAsc() : orderByResDesc();
+    setOrderRes(!orderRes);
+  };
+
   useEffect(() => {
     loadData();
   }, [month]);
@@ -237,11 +378,36 @@ export default function Strength() {
                 </caption>
                 <thead>
                   <tr>
-                    <th>Date</th>
-                    <th>Exercise</th>
-                    <th>Sets</th>
-                    <th>Reps</th>
-                    <th>Resistance</th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderDate}
+                    >
+                      Date <br /> <BsArrowDownUp />
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderExercise}
+                    >
+                      Exercise <br /> <BsArrowDownUp />
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderSets}
+                    >
+                      Sets <br /> <BsArrowDownUp />
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderReps}
+                    >
+                      Reps <br /> <BsArrowDownUp />
+                    </th>
+                    <th
+                      className="heading-click"
+                      onClick={handleChangeOrderRes}
+                    >
+                      Resistance <br /> <BsArrowDownUp />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

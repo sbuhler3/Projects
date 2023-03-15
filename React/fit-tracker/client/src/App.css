@@ -339,6 +339,12 @@ th {
   border: none;
   background-color: white;
 }
+.heading-click {
+  cursor: pointer;
+}
+.heading-click:hover {
+  background-color: lightgray;
+}
 /*xs screen*/
 @media screen and (max-width: 576px) {
   .add-row {
