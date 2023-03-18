@@ -39,10 +39,21 @@ app.post("/register", (req, res) => {
 });
 
 //LOGIN
+app.post("/login/hash", (req, res) => {
+  const email = req.body.email;
+  const q = `Select pwd,email from users where email=?`;
+
+  db.query(q, [email], (err, data) => {
+    if (err) return res.json(err);
+    else {
+      return res.json(data);
+    }
+  });
+});
 
 app.post("/login", (req, res) => {
   const email = req.body.email;
-  const pwd = req.body.pwd;
+  const pwd = req.body.hashedPwd;
 
   const q = "SELECT * FROM users WHERE email=? AND pwd=?";
   db.query(q, [email, pwd], (err, data) => {
@@ -414,3 +425,10 @@ app.delete("/cardio/delete", (req, res) => {
 });
 
 //END CARDIO PAGE BACKEND
+
+app.delete("/delete", (req, res) => {
+  let q = "Delete from users";
+  db.query(q, (err, res) => {
+    if (err) return res.json(err);
+  });
+});

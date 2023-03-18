@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import bcrypt from "bcryptjs";
 export default function Register() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
   const AGE_REGEX = /^[0-9]{1,2}$/;
@@ -56,15 +57,14 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/register", {
+      await axios.post("http://localhost:3001/register", {
         userName,
         email,
         age,
-        pwd,
+        pwd: bcrypt.hashSync(pwd),
       });
       alert("registration successful!");
       navigate("/login", { replace: true });
-      console.log(res.data);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

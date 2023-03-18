@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import { AuthContext } from "../context/authContext";
+import bcrypt from "bcryptjs";
+import axios from "axios";
 
 export default function Login() {
   const EMAIL_REGEX = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
@@ -30,8 +32,18 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({ email, pwd });
-      navigate("/home", { replace: true });
+      const res = await axios.post("http://localhost:3001/login/hash", {
+        email,
+      });
+
+      const hashedPwd = res.data[0].pwd;
+      const isMatch = bcrypt.compareSync(pwd, hashedPwd);
+      if (isMatch) {
+        await login({ email, hashedPwd });
+        navigate("/home", { replace: true });
+      } else {
+        setErrMsg("Email/Password combination does not exist");
+      }
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -42,7 +54,6 @@ export default function Login() {
       }
     }
   };
-
   return (
     <div className="intro-container">
       <section>
